@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GuardianX Alert",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "olderAdultId",
+    "type",
+    "severity",
+    "state",
+    "summary",
+    "openedAt",
+    "sourceEventId",
+    "policyVersion"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "olderAdultId": {
+      "type": "string"
+    },
+    "sourceEventId": {
+      "type": "string"
+    },
+    "type": {
+      "enum": [
+        "potential_fall",
+        "inactivity_check",
+        "device_health",
+        "sos"
+      ]
+    },
+    "severity": {
+      "enum": [
+        "info",
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+    "state": {
+      "enum": [
+        "detected",
+        "pending_check_in",
+        "acknowledged",
+        "escalating",
+        "resolved",
+        "false_positive",
+        "cancelled",
+        "system_failed"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "openedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "acknowledgedAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "resolvedAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "policyVersion": {
+      "type": "string"
+    },
+    "resolutionCode": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "idempotencyKey": {
+      "type": "string"
+    }
+  }
+}

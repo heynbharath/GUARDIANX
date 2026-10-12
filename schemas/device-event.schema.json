@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GuardianX Normalized Device Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "eventId",
+    "deviceId",
+    "olderAdultId",
+    "eventType",
+    "eventTime",
+    "receivedAt",
+    "source",
+    "dataQuality",
+    "idempotencyKey"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "deviceId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "olderAdultId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "eventType": {
+      "enum": [
+        "heartbeat",
+        "motion_sample",
+        "potential_fall",
+        "inactivity_candidate",
+        "sos_pressed",
+        "battery_low",
+        "device_offline",
+        "device_online"
+      ]
+    },
+    "eventTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "receivedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "sequenceNumber": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "source": {
+      "enum": [
+        "simulator",
+        "device_adapter"
+      ]
+    },
+    "dataQuality": {
+      "enum": [
+        "valid",
+        "degraded",
+        "unknown"
+      ]
+    },
+    "idempotencyKey": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 256
+    },
+    "batteryPercent": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 100
+    },
+    "payload": {
+      "type": "object"
+    }
+  }
+}
