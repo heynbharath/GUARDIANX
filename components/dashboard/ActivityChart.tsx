@@ -8,6 +8,7 @@ interface ActivityChartProps {
 }
 
 export function ActivityChart({ data }: ActivityChartProps) {
+  const [selectedIndex, setSelectedIndex] = React.useState<number | null>(2); // Default to 08:00 (peak active)
   // SVG Area & Line Chart
   const width = 460;
   const height = 110;
@@ -29,14 +30,23 @@ export function ActivityChart({ data }: ActivityChartProps) {
 
   const areaD = `${pathD} L ${points[points.length - 1].x} ${height} L ${points[0].x} ${height} Z`;
 
+  const activePoint = selectedIndex !== null ? points[selectedIndex] : null;
+
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between text-xs">
-        <span className="font-display font-semibold text-gx-text">
-          12-Hour Movement Rhythm
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="font-display font-semibold text-gx-text">
+            12-Hour Movement Rhythm
+          </span>
+          {activePoint && (
+            <span className="px-2 py-0.5 rounded-full bg-gx-mint/15 text-gx-mint text-[10px] font-mono border border-gx-mint/30 animate-in fade-in">
+              {activePoint.timeLabel} · {activePoint.movementIndex}% ({activePoint.status})
+            </span>
+          )}
+        </div>
         <span className="font-mono text-[10px] text-gx-muted">
-          SAMPLE TREND · 06:00 - 17:00
+          TAP TO INSPECT · 06:00 - 17:00
         </span>
       </div>
 
@@ -70,24 +80,56 @@ export function ActivityChart({ data }: ActivityChartProps) {
             strokeLinejoin="round"
           />
 
-          {/* Points */}
-          {points.map((pt, i) => (
-            <circle
-              key={i}
-              cx={pt.x}
-              cy={pt.y}
-              r="2.5"
-              fill="#b8ffd9"
-              className="hover:r-4 transition-all"
-            />
-          ))}
+          {/* Interactive Points and large touch targets */}
+          {points.map((pt, i) => {
+            const isSelected = selectedIndex === i;
+            return (
+              <g
+                key={i}
+                className="cursor-pointer"
+                onClick={() => setSelectedIndex(i)}
+                onMouseEnter={() => setSelectedIndex(i)}
+              >
+                {/* Invisible large touch hit area */}
+                <circle cx={pt.x} cy={pt.y} r="14" fill="transparent" />
+                {isSelected && (
+                  <circle
+                    cx={pt.x}
+                    cy={pt.y}
+                    r="6.5"
+                    fill="none"
+                    stroke="#d7ff8f"
+                    strokeWidth="2"
+                    className="animate-ping"
+                  />
+                )}
+                <circle
+                  cx={pt.x}
+                  cy={pt.y}
+                  r={isSelected ? "4.5" : "2.5"}
+                  fill={isSelected ? "#d7ff8f" : "#b8ffd9"}
+                  className="transition-all"
+                />
+              </g>
+            );
+          })}
         </svg>
       </div>
 
-      {/* Axis time labels */}
+      {/* Axis time labels with interactive buttons */}
       <div className="flex justify-between text-[9px] font-mono text-gx-muted px-1">
         {data.filter((_, i) => i % 2 === 0).map((d) => (
-          <span key={d.timeLabel}>{d.timeLabel}</span>
+          <button
+            key={d.timeLabel}
+            type="button"
+            onClick={() => {
+              const idx = data.findIndex((item) => item.timeLabel === d.timeLabel);
+              if (idx !== -1) setSelectedIndex(idx);
+            }}
+            className="hover:text-gx-mint transition-colors cursor-pointer py-0.5"
+          >
+            {d.timeLabel}
+          </button>
         ))}
       </div>
     </div>

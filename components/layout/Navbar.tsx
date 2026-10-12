@@ -18,6 +18,17 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   const navLinks = [
     { name: "Product", href: "#product" },
     { name: "How It Works", href: "#how-it-works" },
@@ -95,34 +106,42 @@ export function Navbar() {
         </div>
       </Container>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer Overlay and Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#0a1916]/98 backdrop-blur-xl border-b border-gx-border px-4 py-6 shadow-2xl animate-in slide-in-from-top-2 duration-200">
-          <nav className="flex flex-col gap-4 text-sm font-medium">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-gx-text hover:text-gx-mint py-2 border-b border-gx-border/40 flex items-center justify-between"
-              >
-                <span>{link.name}</span>
-                <span className="text-xs text-gx-muted font-mono">→</span>
-              </a>
-            ))}
-            <div className="pt-2">
-              <a
-                href="#demo"
-                onClick={() => setMobileMenuOpen(false)}
-                className="block w-full"
-              >
-                <Button size="md" className="w-full">
-                  Explore Interactive Demo
-                </Button>
-              </a>
-            </div>
-          </nav>
-        </div>
+        <>
+          <div
+            className="fixed inset-0 top-[61px] bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+          <div className="relative z-50 lg:hidden bg-[#091714]/95 backdrop-blur-2xl border-b border-gx-border px-5 py-6 shadow-2xl animate-in slide-in-from-top-2 duration-200">
+            <nav className="flex flex-col gap-1 text-sm font-medium">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-gx-text hover:text-gx-mint active:bg-gx-panel/50 py-3 px-2 rounded-xl border-b border-gx-border/30 flex items-center justify-between transition-colors min-h-[44px]"
+                >
+                  <span className="font-display font-medium tracking-wide">{link.name}</span>
+                  <span className="text-xs text-gx-mint/60 font-mono">→</span>
+                </a>
+              ))}
+              <div className="pt-4 mt-2">
+                <a
+                  href="#demo"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full"
+                >
+                  <Button size="md" className="w-full justify-center shadow-glow">
+                    <span>Explore Interactive Demo</span>
+                    <ArrowUpRight className="w-4 h-4 ml-1.5" />
+                  </Button>
+                </a>
+              </div>
+            </nav>
+          </div>
+        </>
       )}
     </header>
   );

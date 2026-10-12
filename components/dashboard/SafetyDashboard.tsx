@@ -48,16 +48,76 @@ export function SafetyDashboard() {
   const [auditLogs, setAuditLogs] = useState<AuditEvent[]>(INITIAL_AUDIT_LOGS);
   const [isResolveModalOpen, setIsResolveModalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [isLiveTelemetry, setIsLiveTelemetry] = useState(false);
+  const [gracePeriod, setGracePeriod] = useState<number | null>(null);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(null), 3800);
   };
 
+  // Live telemetry pulse effect
+  React.useEffect(() => {
+    if (!isLiveTelemetry) return;
+    const interval = setInterval(() => {
+      setTelemetry((prev) => {
+        if (prev.connectionState === "offline") return prev;
+        const deltaHr = Math.floor(Math.random() * 5) - 2; // -2 to +2 bpm
+        const baseBpm = activeAlert ? 104 : 72;
+        const newBpm = Math.max(55, Math.min(130, baseBpm + deltaHr));
+        const deltaSteps = Math.random() > 0.4 ? Math.floor(Math.random() * 4) + 1 : 0;
+        return {
+          ...prev,
+          heartRateBpm: newBpm,
+          stepCount: prev.stepCount + deltaSteps,
+          lastHeartbeat: new Date().toISOString(),
+        };
+      });
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [isLiveTelemetry, activeAlert]);
+
+  // Grace period timer effect for active check-ins
+  React.useEffect(() => {
+    if (gracePeriod === null || !activeAlert) return;
+    if (activeAlert.state !== "detected" && activeAlert.state !== "pending_check_in") return;
+
+    if (gracePeriod <= 0) {
+      // Grace period expired without wearer check-in: Auto-escalate to primary contact
+      setGracePeriod(null);
+      const escalationResult = transitionAlert({
+        alert: activeAlert,
+        nextState: "pending_check_in",
+        actor: { type: "system", id: "grace_timer", name: "Grace Period Engine" },
+        reason: "Elder grace period window (30s) expired without cancellation",
+        note: "System dispatched urgent push to primary caregiver Kavita Rao.",
+      });
+
+      if (escalationResult.success) {
+        setActiveAlert(escalationResult.alert);
+        if (escalationResult.auditEvent) {
+          setAuditLogs((prev) => [escalationResult.auditEvent!, ...prev]);
+        }
+        setContacts((prev) =>
+          prev.map((c) => (c.isPrimary ? { ...c, deliveryStatus: "notified" } : c))
+        );
+        showToast("Grace period elapsed! Caregiver notification dispatched to Kavita Rao.");
+      }
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setGracePeriod((prev) => (prev !== null ? prev - 1 : null));
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [gracePeriod, activeAlert]);
+
   // 1. Simulate Fall Event
   const handleSimulateFall = () => {
     const newAlert = createSimulatedFallAlert();
     setActiveAlert(newAlert);
+    setGracePeriod(30); // 30s countdown for demo
     setTelemetry((prev) => ({
       ...prev,
       heartRateBpm: 104, // elevated stress/fall signature
@@ -72,11 +132,11 @@ export function SafetyDashboard() {
       previousState: "detected",
       nextState: "detected",
       reason: "High-G impact vector (3.8g) detected on wrist band",
-      note: "Kinetic threshold exceeded. Grace period check-in timer activated.",
+      note: "Kinetic threshold exceeded. Grace period check-in timer activated (30s).",
       correlationId: `corr_${Date.now()}`,
     };
     setAuditLogs((prev) => [auditEntry, ...prev]);
-    showToast("Simulated Fall Alert triggered. Waiting for check-in or caregiver action.");
+    showToast("Simulated Fall Alert triggered. 30s grace period active on wristband.");
   };
 
   // 2. Simulate Inactivity Event
@@ -125,6 +185,7 @@ export function SafetyDashboard() {
 
   // 4. Normal Check-in by Wearer
   const handleSimulateCheckIn = () => {
+    setGracePeriod(null);
     if (activeAlert) {
       const result = transitionAlert({
         alert: activeAlert,
@@ -163,6 +224,7 @@ export function SafetyDashboard() {
   // 5. Acknowledge Alert by Caregiver
   const handleAcknowledge = () => {
     if (!activeAlert) return;
+    setGracePeriod(null);
     const result = transitionAlert({
       alert: activeAlert,
       nextState: "acknowledged",
@@ -184,6 +246,7 @@ export function SafetyDashboard() {
   // 6. Simulate Escalation to Contact 2
   const handleEscalate = () => {
     if (!activeAlert) return;
+    setGracePeriod(null);
     const result = transitionAlert({
       alert: activeAlert,
       nextState: "escalating",
@@ -242,6 +305,7 @@ export function SafetyDashboard() {
 
     if (result.success) {
       setActiveAlert(null);
+      setGracePeriod(null);
       if (result.auditEvent) setAuditLogs((prev) => [result.auditEvent!, ...prev]);
       setContacts((prev) => prev.map((c) => ({ ...c, deliveryStatus: "idle" })));
       setTelemetry(INITIAL_DEVICE_TELEMETRY);
@@ -252,6 +316,7 @@ export function SafetyDashboard() {
   // Mark False Alarm directly
   const handleMarkFalseAlarm = () => {
     if (!activeAlert) return;
+    setGracePeriod(null);
     const result = transitionAlert({
       alert: activeAlert,
       nextState: "false_positive",
@@ -272,6 +337,7 @@ export function SafetyDashboard() {
   // 8. Reset Demo
   const handleResetDemo = () => {
     setActiveAlert(null);
+    setGracePeriod(null);
     setTelemetry(INITIAL_DEVICE_TELEMETRY);
     setContacts(INITIAL_GUARDIAN_CONTACTS);
     setAuditLogs(INITIAL_AUDIT_LOGS);
@@ -370,73 +436,73 @@ export function SafetyDashboard() {
           {/* Quick Metrics Bar */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-gx-border/40 border-b border-gx-border">
             {/* Metric 1: Safety Status */}
-            <div className="p-5 bg-[#091713] text-left">
-              <div className="text-[10px] font-mono text-gx-muted uppercase tracking-wider">
+            <div className="p-3.5 sm:p-5 bg-[#091713] text-left">
+              <div className="text-[10px] font-mono text-gx-muted uppercase tracking-wider truncate">
                 Overall Safety Status
               </div>
-              <div className="text-xl sm:text-2xl font-display font-bold mt-1 text-gx-text flex items-center gap-2">
+              <div className="text-lg sm:text-2xl font-display font-bold mt-1 text-gx-text flex items-center gap-1.5 sm:gap-2">
                 {activeAlert ? (
-                  <span className="text-gx-coral flex items-center gap-1.5">
-                    <AlertTriangle className="w-5 h-5 shrink-0" />
+                  <span className="text-gx-coral flex items-center gap-1.5 text-base sm:text-2xl">
+                    <AlertTriangle className="w-4 sm:w-5 h-4 sm:h-5 shrink-0" />
                     Review Needed
                   </span>
                 ) : (
-                  <span className="text-gx-emerald flex items-center gap-1.5">
-                    <CheckCircle2 className="w-5 h-5 shrink-0" />
+                  <span className="text-gx-emerald flex items-center gap-1.5 text-base sm:text-2xl">
+                    <CheckCircle2 className="w-4 sm:w-5 h-4 sm:h-5 shrink-0" />
                     Stable & Safe
                   </span>
                 )}
               </div>
-              <div className="text-[11px] text-gx-muted mt-1">
+              <div className="text-[10px] sm:text-[11px] text-gx-muted mt-0.5 sm:mt-1 truncate">
                 {activeAlert ? "Active candidate alert" : "Routine patterns nominal"}
               </div>
             </div>
 
             {/* Metric 2: Today's Movement */}
-            <div className="p-5 bg-[#091713] text-left">
-              <div className="text-[10px] font-mono text-gx-muted uppercase tracking-wider">
+            <div className="p-3.5 sm:p-5 bg-[#091713] text-left">
+              <div className="text-[10px] font-mono text-gx-muted uppercase tracking-wider truncate">
                 Today&apos;s Step Cadence
               </div>
-              <div className="text-xl sm:text-2xl font-display font-bold mt-1 text-gx-text">
+              <div className="text-lg sm:text-2xl font-display font-bold mt-1 text-gx-text">
                 {telemetry.stepCount.toLocaleString()}{" "}
                 <span className="text-xs font-mono text-gx-muted font-normal">steps</span>
               </div>
-              <div className="text-[11px] text-gx-emerald mt-1">
+              <div className="text-[10px] sm:text-[11px] text-gx-emerald mt-0.5 sm:mt-1 truncate">
                 Active morning walk logged
               </div>
             </div>
 
             {/* Metric 3: Current Heart Rate */}
-            <div className="p-5 bg-[#091713] text-left">
-              <div className="text-[10px] font-mono text-gx-muted uppercase tracking-wider">
+            <div className="p-3.5 sm:p-5 bg-[#091713] text-left">
+              <div className="text-[10px] font-mono text-gx-muted uppercase tracking-wider truncate">
                 Heart Rhythm Telemetry
               </div>
-              <div className="text-xl sm:text-2xl font-display font-bold mt-1 text-gx-text flex items-center gap-2">
-                <Heart className="w-5 h-5 text-gx-mint animate-pulse" />
+              <div className="text-lg sm:text-2xl font-display font-bold mt-1 text-gx-text flex items-center gap-1.5 sm:gap-2">
+                <Heart className="w-4 sm:w-5 h-4 sm:h-5 text-gx-mint animate-pulse" />
                 <span>{telemetry.heartRateBpm}</span>
                 <span className="text-xs font-mono text-gx-muted font-normal">BPM</span>
               </div>
-              <div className="text-[11px] text-gx-muted mt-1">
+              <div className="text-[10px] sm:text-[11px] text-gx-muted mt-0.5 sm:mt-1 truncate">
                 Resting sinus baseline
               </div>
             </div>
 
             {/* Metric 4: Open Alerts Queue */}
-            <div className="p-5 bg-[#091713] text-left">
-              <div className="text-[10px] font-mono text-gx-muted uppercase tracking-wider">
+            <div className="p-3.5 sm:p-5 bg-[#091713] text-left">
+              <div className="text-[10px] font-mono text-gx-muted uppercase tracking-wider truncate">
                 Care Circle Alerts
               </div>
-              <div className="text-xl sm:text-2xl font-display font-bold mt-1 text-gx-text">
+              <div className="text-lg sm:text-2xl font-display font-bold mt-1 text-gx-text">
                 {activeAlert ? "01 Active" : "00 Open"}
               </div>
-              <div className="text-[11px] text-gx-muted mt-1">
+              <div className="text-[10px] sm:text-[11px] text-gx-muted mt-0.5 sm:mt-1 truncate">
                 {activeAlert ? "Escalation in progress" : "Queue clear"}
               </div>
             </div>
           </div>
 
           {/* Main Dashboard Body */}
-          <div className="p-6 sm:p-8 space-y-6">
+          <div className="p-4 sm:p-8 space-y-6">
             {/* Active Alert Panel */}
             <AlertPanel
               alert={activeAlert}
@@ -444,6 +510,8 @@ export function SafetyDashboard() {
               onEscalate={handleEscalate}
               onOpenResolveModal={() => setIsResolveModalOpen(true)}
               onMarkFalsePositive={handleMarkFalseAlarm}
+              onWearerCheckIn={handleSimulateCheckIn}
+              gracePeriodSeconds={gracePeriod ?? undefined}
             />
 
             {/* Working Scenario Simulator Controls */}
@@ -460,6 +528,8 @@ export function SafetyDashboard() {
               canEscalate={!!activeAlert && activeAlert.escalationLevel < 2}
               canAcknowledge={!!activeAlert && activeAlert.state !== "acknowledged"}
               isOffline={telemetry.connectionState === "offline"}
+              isLiveTelemetry={isLiveTelemetry}
+              onToggleLiveTelemetry={() => setIsLiveTelemetry(!isLiveTelemetry)}
             />
 
             {/* Two-Column Middle Section: Rhythm Chart & Contacts */}

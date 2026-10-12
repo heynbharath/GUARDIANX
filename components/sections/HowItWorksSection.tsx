@@ -165,22 +165,48 @@ export function HowItWorksSection() {
               <p>{stages[activeStage].detail}</p>
             </div>
 
-            {/* Step sequence dots */}
-            <div className="mt-8 pt-6 border-t border-gx-border/40 flex items-center justify-between text-xs font-mono text-gx-muted">
-              <span>Timeline navigation</span>
-              <div className="flex gap-2">
+            {/* Step sequence dots and Prev/Next controls */}
+            <div className="mt-8 pt-6 border-t border-gx-border/40 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-gx-muted">
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  disabled={activeStage === 0}
+                  onClick={() => setActiveStage((prev) => Math.max(0, prev - 1))}
+                  className="px-3 py-1.5 rounded-xl border border-gx-border bg-gx-panel/50 text-gx-text disabled:opacity-30 disabled:cursor-not-allowed hover:border-gx-mint transition-colors"
+                >
+                  ← Prev
+                </button>
+                <button
+                  type="button"
+                  disabled={activeStage === stages.length - 1}
+                  onClick={() => setActiveStage((prev) => Math.min(stages.length - 1, prev + 1))}
+                  className="px-3 py-1.5 rounded-xl border border-gx-border bg-gx-panel/50 text-gx-text disabled:opacity-30 disabled:cursor-not-allowed hover:border-gx-mint transition-colors"
+                >
+                  Next →
+                </button>
+              </div>
+
+              <div className="flex items-center gap-2">
                 {stages.map((_, i) => (
                   <button
                     key={i}
                     type="button"
                     onClick={() => setActiveStage(i)}
-                    className={`h-2 rounded-full transition-all ${
-                      activeStage === i ? "w-6 bg-gx-mint" : "w-2 bg-gx-panel hover:bg-gx-muted"
+                    className={`h-2.5 rounded-full transition-all ${
+                      activeStage === i ? "w-7 bg-gx-mint shadow-glow" : "w-2.5 bg-gx-panel hover:bg-gx-muted"
                     }`}
                     aria-label={`Go to stage ${i + 1}`}
                   />
                 ))}
               </div>
+
+              <a
+                href="#demo"
+                className="text-gx-mint hover:underline font-mono text-xs flex items-center gap-1"
+              >
+                <span>Test in Interactive Demo</span>
+                <span>↓</span>
+              </a>
             </div>
           </div>
         </div>

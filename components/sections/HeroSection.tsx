@@ -71,20 +71,20 @@ export function HeroSection() {
           {/* Right Column: Original CSS/SVG Wearable Visual Composition */}
           <div className="lg:col-span-5 relative flex items-center justify-center min-h-[440px] sm:min-h-[500px]">
             {/* Halo radar ring */}
-            <div className="absolute w-[360px] sm:w-[440px] h-[360px] sm:h-[440px] rounded-full border border-gx-mint/15 bg-radial-gradient flex items-center justify-center pointer-events-none">
+            <div className="absolute w-[280px] sm:w-[440px] h-[280px] sm:h-[440px] rounded-full border border-gx-mint/15 bg-radial-gradient flex items-center justify-center pointer-events-none">
               <div className="w-[85%] h-[85%] rounded-full border border-dashed border-gx-mint/20 animate-spin-slow" />
               <div className="absolute w-[60%] h-[60%] rounded-full border border-gx-mint/10" />
             </div>
 
             {/* Wearable Device Mockup */}
-            <div className="relative z-10 w-[185px] h-[230px] flex items-center justify-center -rotate-6 transition-transform duration-500 hover:rotate-0 drop-shadow-[0_25px_40px_rgba(0,0,0,0.6)]">
+            <div className="relative z-10 w-[170px] sm:w-[185px] h-[220px] sm:h-[230px] flex items-center justify-center -rotate-3 sm:-rotate-6 transition-transform duration-500 hover:rotate-0 hover:scale-105 active:scale-95 drop-shadow-[0_25px_40px_rgba(0,0,0,0.6)] cursor-pointer select-none" title="Tap watch to test wearable interaction">
               {/* Strap behind body */}
-              <div className="absolute w-[100px] h-[310px] rounded-[36px] bg-gradient-to-r from-[#1b2b24] via-[#3a5245] to-[#1a2c24] shadow-[inset_4px_0_8px_#0e1b15,inset_-4px_0_8px_#4c6656]" />
+              <div className="absolute w-[92px] sm:w-[100px] h-[290px] sm:h-[310px] rounded-[36px] bg-gradient-to-r from-[#1b2b24] via-[#3a5245] to-[#1a2c24] shadow-[inset_4px_0_8px_#0e1b15,inset_-4px_0_8px_#4c6656]" />
 
               {/* Watch Chassis */}
-              <div className="relative z-10 w-[172px] h-[208px] rounded-[44px] p-2 bg-gradient-to-br from-[#20362c] to-[#08130f] border-4 border-[#2d493c] shadow-[inset_0_0_0_2px_#597666,0_0_20px_rgba(72,214,162,0.25)] flex flex-col items-center justify-between py-4 text-center">
+              <div className="relative z-10 w-[158px] sm:w-[172px] h-[195px] sm:h-[208px] rounded-[40px] sm:rounded-[44px] p-2 bg-gradient-to-br from-[#20362c] to-[#08130f] border-4 border-[#2d493c] shadow-[inset_0_0_0_2px_#597666,0_0_20px_rgba(72,214,162,0.25)] flex flex-col items-center justify-between py-3 sm:py-4 text-center">
                 {/* Watch Status Header */}
-                <div className="flex items-center justify-between w-full px-3 text-[9px] font-mono text-gx-mint/80">
+                <div className="flex items-center justify-between w-full px-2.5 sm:px-3 text-[9px] font-mono text-gx-mint/80">
                   <span>GX-P2</span>
                   <span className="flex items-center gap-1 text-[8px] text-gx-emerald">
                     <Radio className="w-2.5 h-2.5 animate-pulse" />
@@ -95,16 +95,16 @@ export function HeroSection() {
                 {/* Heart Rate & Waveform Display */}
                 <div className="my-auto space-y-1">
                   <div className="inline-flex p-1.5 rounded-full bg-emerald-500/15 text-gx-mint">
-                    <Heart className="w-5 h-5 fill-current animate-ecg-pulse text-gx-mint" />
+                    <Heart className="w-4 sm:w-5 h-4 sm:h-5 fill-current animate-ecg-pulse text-gx-mint" />
                   </div>
-                  <div className="font-display font-extrabold text-3xl tracking-tight text-white leading-none">
+                  <div className="font-display font-extrabold text-2xl sm:text-3xl tracking-tight text-white leading-none">
                     72
-                    <span className="text-[10px] font-mono text-gx-muted uppercase tracking-wider block font-normal mt-0.5">
+                    <span className="text-[9px] sm:text-[10px] font-mono text-gx-muted uppercase tracking-wider block font-normal mt-0.5">
                       BPM · NOMINAL
                     </span>
                   </div>
                   {/* SVG ECG Waveform */}
-                  <div className="w-24 h-6 mx-auto pt-1">
+                  <div className="w-20 sm:w-24 h-5 sm:h-6 mx-auto pt-1">
                     <svg viewBox="0 0 100 24" className="w-full h-full fill-none">
                       <path
                         d="M0 12H18L24 12L30 3L37 21L45 9L50 12H68L74 12L80 5L86 17L92 12H100"
@@ -125,35 +125,35 @@ export function HeroSection() {
             </div>
 
             {/* Floating Telemetry Card 1 (System Status) */}
-            <div className="absolute top-4 right-0 sm:-right-4 z-20 p-3 sm:p-3.5 rounded-2xl bg-[#0a1b15]/90 backdrop-blur-md border border-gx-border shadow-panel text-left max-w-[170px] animate-in fade-in slide-in-from-right-4 duration-500">
-              <div className="flex items-center gap-1.5 text-[9px] font-mono uppercase text-gx-muted tracking-wider">
+            <div className="absolute top-2 right-1 sm:top-4 sm:-right-4 z-20 p-2.5 sm:p-3.5 rounded-2xl bg-[#0a1b15]/90 backdrop-blur-md border border-gx-border shadow-panel text-left max-w-[135px] sm:max-w-[170px] animate-in fade-in slide-in-from-right-4 duration-500">
+              <div className="flex items-center gap-1.5 text-[8px] sm:text-[9px] font-mono uppercase text-gx-muted tracking-wider">
                 <span className="w-1.5 h-1.5 rounded-full bg-gx-emerald shadow-[0_0_8px_#48d6a2]" />
                 System Status
               </div>
-              <div className="font-display font-bold text-xs sm:text-sm text-gx-text mt-1">
+              <div className="font-display font-bold text-xs sm:text-sm text-gx-text mt-0.5 sm:mt-1">
                 Care Circle Active
               </div>
-              <div className="text-[10px] text-gx-mint font-mono mt-0.5">
+              <div className="text-[9px] sm:text-[10px] text-gx-mint font-mono mt-0.5">
                 Wearable · Cloud · Family
               </div>
             </div>
 
             {/* Floating Telemetry Card 2 (Activity Rhythm) */}
-            <div className="absolute bottom-8 left-0 sm:-left-6 z-20 p-3 sm:p-3.5 rounded-2xl bg-[#0a1b15]/90 backdrop-blur-md border border-gx-border shadow-panel text-left max-w-[165px]">
-              <div className="text-[9px] font-mono uppercase text-gx-muted tracking-wider">
+            <div className="absolute bottom-4 left-1 sm:bottom-8 sm:-left-6 z-20 p-2.5 sm:p-3.5 rounded-2xl bg-[#0a1b15]/90 backdrop-blur-md border border-gx-border shadow-panel text-left max-w-[130px] sm:max-w-[165px]">
+              <div className="text-[8px] sm:text-[9px] font-mono uppercase text-gx-muted tracking-wider">
                 Gait & Rhythm
               </div>
-              <div className="font-display font-bold text-xs sm:text-sm text-gx-text mt-1">
+              <div className="font-display font-bold text-xs sm:text-sm text-gx-text mt-0.5 sm:mt-1">
                 Morning Routine
               </div>
               {/* Mini visual rhythm bars */}
-              <div className="flex items-end gap-1 h-5 mt-2">
+              <div className="flex items-end gap-1 h-4 sm:h-5 mt-1.5 sm:mt-2">
                 <span className="w-1.5 h-2 rounded bg-gx-emerald/70" />
-                <span className="w-1.5 h-3.5 rounded bg-gx-emerald/80" />
-                <span className="w-1.5 h-4 rounded bg-gx-mint" />
-                <span className="w-1.5 h-5 rounded bg-gx-emerald" />
-                <span className="w-1.5 h-3 rounded bg-gx-emerald/80" />
-                <span className="w-1.5 h-4.5 rounded bg-gx-mint" />
+                <span className="w-1.5 h-3 sm:h-3.5 rounded bg-gx-emerald/80" />
+                <span className="w-1.5 h-3.5 sm:h-4 rounded bg-gx-mint" />
+                <span className="w-1.5 h-4 sm:h-5 rounded bg-gx-emerald" />
+                <span className="w-1.5 h-2.5 sm:h-3 rounded bg-gx-emerald/80" />
+                <span className="w-1.5 h-3.5 sm:h-4.5 rounded bg-gx-mint" />
                 <span className="w-1.5 h-2 rounded bg-gx-emerald/60" />
               </div>
             </div>

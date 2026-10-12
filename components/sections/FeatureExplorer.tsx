@@ -125,12 +125,12 @@ export function FeatureExplorer() {
             className="mb-0"
           />
 
-          {/* Filter Pills */}
-          <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-gx-panel/40 border border-gx-border self-start shrink-0">
+          {/* Filter Pills with horizontal scroll on small screens */}
+          <div className="flex items-center gap-1.5 sm:gap-2 p-1.5 rounded-2xl bg-gx-panel/40 border border-gx-border self-start shrink-0 overflow-x-auto max-w-full scrollbar-none">
             <button
               type="button"
               onClick={() => setSelectedCategory("all")}
-              className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-colors ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-colors whitespace-nowrap ${
                 selectedCategory === "all"
                   ? "bg-gx-mint text-[#08221a] font-bold"
                   : "text-gx-muted hover:text-gx-text"
@@ -141,7 +141,7 @@ export function FeatureExplorer() {
             <button
               type="button"
               onClick={() => setSelectedCategory("prototype")}
-              className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-colors ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-colors whitespace-nowrap ${
                 selectedCategory === "prototype"
                   ? "bg-gx-mint text-[#08221a] font-bold"
                   : "text-gx-muted hover:text-gx-text"
@@ -152,7 +152,7 @@ export function FeatureExplorer() {
             <button
               type="button"
               onClick={() => setSelectedCategory("planned")}
-              className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-colors ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-colors whitespace-nowrap ${
                 selectedCategory === "planned"
                   ? "bg-gx-mint text-[#08221a] font-bold"
                   : "text-gx-muted hover:text-gx-text"
@@ -173,7 +173,7 @@ export function FeatureExplorer() {
             return (
               <div
                 key={item.id}
-                className="p-6 rounded-3xl bg-gx-panel/40 border border-gx-border hover:border-gx-mint/30 transition-all flex flex-col justify-between group"
+                className="p-6 rounded-3xl bg-gx-panel/40 border border-gx-border hover:border-gx-mint/40 hover:bg-gx-panel/60 transition-all flex flex-col justify-between group shadow-sm hover:shadow-panel"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">

@@ -26,6 +26,8 @@ interface DemoControlsProps {
   canEscalate: boolean;
   canAcknowledge: boolean;
   isOffline: boolean;
+  isLiveTelemetry?: boolean;
+  onToggleLiveTelemetry?: () => void;
 }
 
 export function DemoControls({
@@ -41,6 +43,8 @@ export function DemoControls({
   canEscalate,
   canAcknowledge,
   isOffline,
+  isLiveTelemetry,
+  onToggleLiveTelemetry,
 }: DemoControlsProps) {
   return (
     <div className="p-6 rounded-2xl bg-[#091814] border border-gx-mint/20 shadow-panel">
@@ -57,15 +61,33 @@ export function DemoControls({
           </p>
         </div>
 
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={onResetDemo}
-          className="shrink-0 text-xs border-gx-border hover:border-gx-mint"
-        >
-          <RotateCcw className="w-3.5 h-3.5 mr-1.5" />
-          <span>Reset Simulation</span>
-        </Button>
+        <div className="flex items-center gap-2 flex-wrap">
+          {onToggleLiveTelemetry && (
+            <Button
+              variant={isLiveTelemetry ? "primary" : "outline"}
+              size="sm"
+              onClick={onToggleLiveTelemetry}
+              className={`shrink-0 text-xs ${
+                isLiveTelemetry
+                  ? "bg-gx-mint text-[#08221a] font-bold shadow-glow"
+                  : "border-gx-border hover:border-gx-mint text-gx-muted"
+              }`}
+            >
+              <span className={`w-2 h-2 rounded-full mr-1.5 ${isLiveTelemetry ? "bg-[#08221a] animate-ping" : "bg-gx-muted"}`} />
+              <span>{isLiveTelemetry ? "Live Feed: Active" : "Simulate Live Feed"}</span>
+            </Button>
+          )}
+
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={onResetDemo}
+            className="shrink-0 text-xs border-gx-border hover:border-gx-mint"
+          >
+            <RotateCcw className="w-3.5 h-3.5 mr-1.5" />
+            <span>Reset Simulation</span>
+          </Button>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">

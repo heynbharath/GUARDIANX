@@ -1,9 +1,13 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ExternalLink, Check, Layers } from "lucide-react";
+import { ExternalLink, Check, Layers, TableProperties, XCircle } from "lucide-react";
+import { Button } from "@/components/ui/Button";
 
 export function CompetitorLandscapeSection() {
+  const [showMatrix, setShowMatrix] = useState(false);
   const adjacentSolutions = [
     {
       name: "Apple Watch Fall Detection",
@@ -103,10 +107,20 @@ export function CompetitorLandscapeSection() {
         </div>
 
         {/* Differentiation Hypotheses */}
-        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-[#0e241c] to-[#071311] border border-gx-mint/20 shadow-panel">
-          <div className="flex items-center gap-2 text-xs font-mono text-gx-lime uppercase tracking-wider mb-2">
-            <Layers className="w-4 h-4" />
-            <span>Research Hypothesis</span>
+        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-[#0e241c] to-[#071311] border border-gx-mint/20 shadow-panel mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+            <div className="flex items-center gap-2 text-xs font-mono text-gx-lime uppercase tracking-wider">
+              <Layers className="w-4 h-4" />
+              <span>Research Hypothesis</span>
+            </div>
+            <button
+              type="button"
+              onClick={() => setShowMatrix(!showMatrix)}
+              className="self-start sm:self-auto px-3.5 py-1.5 rounded-xl border border-gx-mint/30 bg-gx-panel/70 text-xs font-mono text-gx-mint hover:bg-gx-mint hover:text-[#08221a] transition-all flex items-center gap-2"
+            >
+              <TableProperties className="w-3.5 h-3.5" />
+              <span>{showMatrix ? "Hide Feature Matrix" : "Inspect Feature Matrix Table"}</span>
+            </button>
           </div>
           <h3 className="font-display font-bold text-2xl text-gx-text mb-3">
             Where GuardianX Proposes to Differentiate
@@ -132,6 +146,78 @@ export function CompetitorLandscapeSection() {
               </div>
             ))}
           </div>
+
+          {/* Interactive Comparison Matrix Drawer */}
+          {showMatrix && (
+            <div className="mt-8 pt-8 border-t border-gx-border/50 animate-in fade-in slide-in-from-top-4 duration-300">
+              <div className="text-xs font-mono text-gx-mint uppercase tracking-wider mb-4 flex items-center justify-between">
+                <span>Side-by-Side Dimension Comparison</span>
+                <span className="text-[10px] text-gx-muted">Horizontal scrollable on mobile</span>
+              </div>
+              <div className="overflow-x-auto rounded-2xl border border-gx-border/60 bg-black/40">
+                <table className="w-full text-left text-xs font-mono border-collapse min-w-[620px]">
+                  <thead>
+                    <tr className="border-b border-gx-border/60 bg-[#071612]">
+                      <th className="p-3.5 text-gx-muted font-normal">Feature / Dimension</th>
+                      <th className="p-3.5 text-gx-mint font-bold bg-gx-mint/5 border-x border-gx-mint/20">
+                        GuardianX (Proposed)
+                      </th>
+                      <th className="p-3.5 text-gx-text">Apple Watch</th>
+                      <th className="p-3.5 text-gx-text">Lively Mobile2</th>
+                      <th className="p-3.5 text-gx-text">Medical Guardian</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-white/[0.04]">
+                    <tr>
+                      <td className="p-3.5 text-gx-text font-medium">Primary Response Route</td>
+                      <td className="p-3.5 text-gx-mint font-bold bg-gx-mint/5 border-x border-gx-mint/20">
+                        Family Care Circle First
+                      </td>
+                      <td className="p-3.5 text-gx-muted">Direct 911 / EMS</td>
+                      <td className="p-3.5 text-gx-muted">Call Center Agent</td>
+                      <td className="p-3.5 text-gx-muted">Call Center Agent</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3.5 text-gx-text font-medium">Form Factor Dignity</td>
+                      <td className="p-3.5 text-gx-mint font-bold bg-gx-mint/5 border-x border-gx-mint/20">
+                        Everyday Smart Band
+                      </td>
+                      <td className="p-3.5 text-gx-muted">Consumer Smartwatch</td>
+                      <td className="p-3.5 text-gx-muted">Medical Panic Pendant</td>
+                      <td className="p-3.5 text-gx-muted">Medical Clip/Pendant</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3.5 text-gx-text font-medium">Stale / Disconnected Awareness</td>
+                      <td className="p-3.5 text-gx-mint font-bold bg-gx-mint/5 border-x border-gx-mint/20">
+                        Explicit Stale Alerting
+                      </td>
+                      <td className="p-3.5 text-gx-muted">Passive Bluetooth sync</td>
+                      <td className="p-3.5 text-gx-muted">Periodic Battery Warn</td>
+                      <td className="p-3.5 text-gx-muted">Periodic Battery Warn</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3.5 text-gx-text font-medium">Immutable Resolution Audit</td>
+                      <td className="p-3.5 text-gx-mint font-bold bg-gx-mint/5 border-x border-gx-mint/20">
+                        Append-Only State Machine
+                      </td>
+                      <td className="p-3.5 text-gx-muted">Basic Health log</td>
+                      <td className="p-3.5 text-gx-muted">Internal Dispatch log</td>
+                      <td className="p-3.5 text-gx-muted">Internal Dispatch log</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3.5 text-gx-text font-medium">Elder Grace Window Before Alarm</td>
+                      <td className="p-3.5 text-gx-mint font-bold bg-gx-mint/5 border-x border-gx-mint/20">
+                        Customizable 30-90s
+                      </td>
+                      <td className="p-3.5 text-gx-muted">Fixed 60s Haptic</td>
+                      <td className="p-3.5 text-gx-muted">Immediate Call Hub</td>
+                      <td className="p-3.5 text-gx-muted">Immediate Call Hub</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
         </div>
       </Container>
     </section>

@@ -12,6 +12,8 @@ interface AlertPanelProps {
   onEscalate: () => void;
   onOpenResolveModal: () => void;
   onMarkFalsePositive: () => void;
+  onWearerCheckIn?: () => void;
+  gracePeriodSeconds?: number;
   isSimulating?: boolean;
 }
 
@@ -21,6 +23,8 @@ export function AlertPanel({
   onEscalate,
   onOpenResolveModal,
   onMarkFalsePositive,
+  onWearerCheckIn,
+  gracePeriodSeconds,
   isSimulating,
 }: AlertPanelProps) {
   if (!alert) {
@@ -107,6 +111,43 @@ export function AlertPanel({
             </span>
             <span>{alert.recommendedAction}</span>
           </div>
+
+          {/* Grace Period & Elder Check-in bar if pending */}
+          {isPendingCheckIn && (
+            <div className="p-3.5 rounded-xl bg-[#142e23] border border-gx-mint/30 space-y-2">
+              <div className="flex items-center justify-between text-xs font-mono">
+                <span className="text-gx-mint font-semibold flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-gx-lime animate-pulse" />
+                  Elder Check-in Grace Window Active:
+                </span>
+                <span className="text-gx-lime font-bold">
+                  {gracePeriodSeconds !== undefined ? `${gracePeriodSeconds}s remaining` : "Active"}
+                </span>
+              </div>
+              <div className="w-full bg-black/40 h-1.5 rounded-full overflow-hidden">
+                <div
+                  className="bg-gradient-to-r from-gx-lime to-gx-mint h-full transition-all duration-1000 ease-linear rounded-full"
+                  style={{
+                    width: `${Math.min(100, Math.max(0, ((gracePeriodSeconds ?? 30) / 30) * 100))}%`,
+                  }}
+                />
+              </div>
+              <div className="flex items-center justify-between gap-2 pt-1">
+                <p className="text-[11px] text-gx-muted">
+                  Wristband is vibrating. Tapping &ldquo;I&apos;m OK&rdquo; clears this without disturbing contacts.
+                </p>
+                {onWearerCheckIn && (
+                  <button
+                    type="button"
+                    onClick={onWearerCheckIn}
+                    className="px-2.5 py-1 rounded-lg bg-gx-mint text-[#08221a] font-mono font-bold text-[10px] hover:bg-gx-lime transition-colors shrink-0 shadow-sm"
+                  >
+                    Tap &ldquo;I&apos;m OK&rdquo;
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Right Side: Working Alert Transition Controls */}
