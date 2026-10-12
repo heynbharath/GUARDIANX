@@ -84,8 +84,8 @@ export function Footer() {
             </h4>
             <div className="space-y-2 text-gx-muted">
               <p>
-                <strong className="text-gx-text block">Creator:</strong>
-                {PROJECT_CONFIG.creator.name}
+                <strong className="text-gx-text block">Initiative:</strong>
+                GuardianX Safety Labs
               </p>
               <p>
                 <strong className="text-gx-text block">Category:</strong>
@@ -102,8 +102,7 @@ export function Footer() {
         {/* Legal & Medical Simulation Disclaimer */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-gx-muted/80">
           <div>
-            © {new Date().getFullYear()} GuardianX · Concept prototype by{" "}
-            <span className="text-gx-text font-medium">{PROJECT_CONFIG.creator.name}</span>.
+            © {new Date().getFullYear()} GuardianX · Elderly Remote Safety Concept Prototype.
           </div>
           <div className="max-w-xl text-center md:text-right">
             <span className="text-gx-lime font-mono">SIMULATION DISCLOSURE:</span> All

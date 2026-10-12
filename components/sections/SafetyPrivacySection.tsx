@@ -85,7 +85,7 @@ export function SafetyPrivacySection() {
             <span>Important Medical & Emergency Disclaimer</span>
           </div>
           <p className="text-gx-muted">
-            GuardianX is an academic and product concept prototype created by Sunaina Mohapatra. It is not a certified medical device (FDA, CE, or CDSCO), nor is it an active 911/112 emergency response dispatch service. It does not provide medical diagnoses, treatment, or clinical patient monitoring. In the event of a real medical emergency, individuals must immediately dial their local emergency services.
+            GuardianX is an academic and product concept prototype. It is not a certified medical device (FDA, CE, or CDSCO), nor is it an active 911/112 emergency response dispatch service. It does not provide medical diagnoses, treatment, or clinical patient monitoring. In the event of a real medical emergency, individuals must immediately dial their local emergency services.
           </p>
         </div>
       </Container>

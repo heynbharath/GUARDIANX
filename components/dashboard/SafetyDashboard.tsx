@@ -561,7 +561,7 @@ export function SafetyDashboard() {
 
         {/* Explicit Disclosure Footer */}
         <p className="mt-4 text-center text-xs font-mono text-gx-muted/70">
-          *“BLE Connected” and telemetry values are illustrative. GuardianX is a student product concept by Sunaina Mohapatra. No real sensors, phones, or emergency services are connected.
+          *“BLE Connected” and telemetry values are illustrative. GuardianX is an elderly remote safety research and product concept. No real sensors, phones, or emergency services are connected.
         </p>
 
         {/* Resolution Outcome Modal */}

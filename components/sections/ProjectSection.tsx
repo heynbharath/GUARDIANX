@@ -1,14 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { PROJECT_CONFIG } from "@/lib/project-config";
-import { Button } from "@/components/ui/Button";
 import {
   GraduationCap,
-  Eye,
-  EyeOff,
   GitCommit,
   CheckCircle2,
   Calendar,
@@ -16,7 +13,6 @@ import {
 } from "lucide-react";
 
 export function ProjectSection() {
-  const [showUsn, setShowUsn] = useState(PROJECT_CONFIG.creator.showUsnPublicly);
 
   const roadmapStages = [
     {
@@ -63,12 +59,12 @@ export function ProjectSection() {
         <SectionHeading
           eyebrow="Academic & Research Context"
           title="Student research & engineering"
-          titleAccent="by Sunaina Mohapatra."
+          titleAccent="and product roadmap."
           description="GuardianX is an early-stage product concept exploring how wearable sensing, transparent state machines, and coordinated family response workflows can support older adults living independently."
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: Creator Identity & Academic Card (5 cols) */}
+          {/* Left Column: Initiative Identity & Engineering Card (5 cols) */}
           <div className="lg:col-span-5 p-8 rounded-3xl bg-gradient-to-br from-[#122b22] to-[#081511] border border-gx-mint/30 shadow-panel space-y-6">
             <div className="flex items-center justify-between pb-4 border-b border-gx-border/50">
               <div className="flex items-center gap-2 text-xs font-mono text-gx-mint uppercase tracking-wider">
@@ -82,10 +78,10 @@ export function ProjectSection() {
 
             <div>
               <div className="text-[10px] font-mono uppercase tracking-widest text-gx-muted">
-                PROJECT CREATOR
+                RESEARCH INITIATIVE
               </div>
               <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-gx-text mt-1">
-                {PROJECT_CONFIG.creator.name}
+                GuardianX Safety Labs
               </h3>
             </div>
 
@@ -109,49 +105,17 @@ export function ProjectSection() {
                   Concept & Interactive Prototype
                 </span>
               </div>
-
-              {/* Privacy-Protected University Seat Number (USN) */}
               <div className="flex items-center justify-between py-2 border-b border-white/[0.04]">
-                <div>
-                  <span className="text-gx-muted block">University Seat Number (USN):</span>
-                  <span className="text-[10px] text-gx-muted/70 font-mono">
-                    Privacy switch: Default hidden on public web
-                  </span>
-                </div>
-                <div className="text-right">
-                  {showUsn ? (
-                    <span className="font-mono font-bold text-gx-text bg-black/40 px-2 py-1 rounded border border-gx-border">
-                      {PROJECT_CONFIG.creator.usn}
-                    </span>
-                  ) : (
-                    <span className="font-mono text-gx-muted/50 bg-black/30 px-2 py-1 rounded">
-                      ••••••••••••
-                    </span>
-                  )}
-                </div>
+                <span className="text-gx-muted">Sensor Specification:</span>
+                <span className="font-mono text-gx-text">
+                  6-DoF IMU & BLE 5.3 Profile
+                </span>
               </div>
-
-              {/* Interactive Toggle for Faculty & Evaluators */}
-              <div className="pt-2">
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setShowUsn(!showUsn)}
-                  className="w-full text-xs font-mono"
-                >
-                  {showUsn ? (
-                    <>
-                      <EyeOff className="w-3.5 h-3.5 mr-1.5" />
-                      <span>Hide Academic USN</span>
-                    </>
-                  ) : (
-                    <>
-                      <Eye className="w-3.5 h-3.5 mr-1.5 text-gx-mint" />
-                      <span>Reveal Academic USN for Faculty Review</span>
-                    </>
-                  )}
-                </Button>
+              <div className="flex items-center justify-between py-2 border-b border-white/[0.04]">
+                <span className="text-gx-muted">Architecture:</span>
+                <span className="font-mono text-gx-mint">
+                  Next.js + Deterministic State Machine
+                </span>
               </div>
             </div>
 
