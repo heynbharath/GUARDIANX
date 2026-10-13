@@ -14,8 +14,8 @@ export const INITIAL_ELDER_PROFILE: ElderProfile = {
   city: "Bengaluru, Karnataka",
   livingStatus: "Independent living, 2nd floor apartment",
   baselineRoutine: "Morning garden stroll (07:30), quiet afternoon reading, evening balcony tea",
-  deviceId: "GX-DEV-9024-BLE",
-  deviceModel: "GuardianX Pulse Band v2 (Simulated Prototype)",
+  deviceId: "GX-NODE-9024-SPATIAL",
+  deviceModel: "GuardianX Spatial Sensor Suite (Living Guardian Node)",
 };
 
 export const INITIAL_DEVICE_TELEMETRY: DeviceTelemetry = {
@@ -87,7 +87,7 @@ export function createSimulatedFallAlert(): SafetyAlert {
     type: "fall",
     title: "Potential Impact Event Detected",
     description:
-      "A high-g acceleration vector (3.8g) followed by immediate cessation of movement was captured on wearable IMU sensor (simulated data).",
+      "A high-g acceleration vector (3.8g) followed by immediate cessation of room movement was captured across living room spatial nodes (simulated telemetry).",
     severity: "critical",
     state: "detected",
     detectedAt: now,
@@ -106,12 +106,12 @@ export function createSimulatedInactivityAlert(): SafetyAlert {
     type: "inactivity",
     title: "Unusual Prolonged Inactivity Notice",
     description:
-      "No measurable gait or postural transition recorded for 180 minutes during expected active waking hours (simulated threshold exceeded).",
+      "No measurable ambient room transition recorded for 180 minutes during expected active waking hours (simulated threshold exceeded).",
     severity: "medium",
     state: "detected",
     detectedAt: now,
     updatedAt: now,
-    recommendedAction: "Send gentle check-in prompt to device; request elder tap confirmation.",
+    recommendedAction: "Send gentle check-in prompt to home node; request elder tap confirmation.",
     confidenceScore: 0.74,
     checkInDueAt: new Date(Date.now() + 180000).toISOString(),
     escalationLevel: 0,
@@ -289,7 +289,7 @@ export const INITIAL_VOICE_QUERIES: import("@/types/guardianx").VoiceAssistantQu
     id: "vox_02",
     timestamp: "11:15 AM",
     userSpokenText: "Call my daughter Kavita please.",
-    assistantResponse: "Connecting hands-free call to Kavita Rao via your pulse band...",
+    assistantResponse: "Connecting hands-free family call to Kavita Rao through the Living Guardian room node...",
     intent: "call_help",
     deviceStatus: "processed",
   },

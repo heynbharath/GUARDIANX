@@ -147,7 +147,7 @@ export function MedicationAppointmentTracker({
                         <button
                           onClick={() => onRequestReminder(med.name)}
                           className="px-2 py-1 rounded-lg text-[10px] font-mono bg-gx-border/60 hover:bg-gx-border text-gx-mint flex items-center gap-1 transition-colors"
-                          title="Trigger wristband chime reminder"
+                          title="Trigger Living Guardian room chime reminder"
                         >
                           <Bell className="w-3 h-3" /> Remind
                         </button>
@@ -198,7 +198,7 @@ export function MedicationAppointmentTracker({
 
                 <div className="mt-4 pt-3 border-t border-gx-border/40 flex items-center justify-between text-xs">
                   <span className="text-[11px] font-mono text-gx-emerald flex items-center gap-1">
-                    <CheckCircle2 className="w-3.5 h-3.5" /> SMS & Wristband Prompt Synced
+                    <CheckCircle2 className="w-3.5 h-3.5" /> SMS & Room Console Synced
                   </span>
                   <button
                     onClick={() => onRequestReminder(apt.title)}

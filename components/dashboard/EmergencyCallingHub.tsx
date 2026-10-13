@@ -53,7 +53,7 @@ export function EmergencyCallingHub({ contacts, onTriggerEmergencyCall }: Props)
         </div>
 
         <div className="text-xs font-mono text-gx-muted">
-          ⚡ One-touch wristband & dashboard dialer
+          ⚡ One-touch room console & dashboard dialer
         </div>
       </div>
 

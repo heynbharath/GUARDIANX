@@ -45,33 +45,48 @@ export function Footer() {
             </h4>
             <ul className="space-y-2">
               <li>
-                <a href="#product" className="hover:text-gx-mint transition-colors">
-                  Product Overview
+                <a href="#living-guardian-hero" className="hover:text-gx-mint transition-colors">
+                  The Living Guardian
                 </a>
               </li>
               <li>
-                <a href="#how-it-works" className="hover:text-gx-mint transition-colors">
-                  5-Stage Workflow
+                <a href="#human-truth" className="hover:text-gx-mint transition-colors">
+                  The Human Truth
+                </a>
+              </li>
+              <li>
+                <a href="#rhythm" className="hover:text-gx-mint transition-colors">
+                  Daily Rhythm & Context
+                </a>
+              </li>
+              <li>
+                <a href="#interactive-guardian" className="hover:text-gx-mint transition-colors">
+                  Spatial Environment
                 </a>
               </li>
               <li>
                 <a href="#demo" className="hover:text-gx-mint transition-colors">
-                  Interactive Dashboard
+                  Care Response Console
                 </a>
               </li>
               <li>
                 <a href="#architecture" className="hover:text-gx-mint transition-colors">
-                  System Architecture
+                  Layered Architecture
                 </a>
               </li>
               <li>
-                <a href="#safety" className="hover:text-gx-mint transition-colors">
-                  Safety & Ethics
+                <a href="#principles" className="hover:text-gx-mint transition-colors">
+                  Ethical Principles
+                </a>
+              </li>
+              <li>
+                <a href="#capabilities" className="hover:text-gx-mint transition-colors">
+                  Future Capabilities
                 </a>
               </li>
               <li>
                 <a href="#project" className="hover:text-gx-mint transition-colors">
-                  Project & Research
+                  Project & Roadmap
                 </a>
               </li>
             </ul>

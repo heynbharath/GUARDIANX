@@ -228,8 +228,8 @@ export function SafetyDashboard() {
         alert: activeAlert,
         nextState: "false_positive",
         actor: { type: "wearer", id: profile.id, name: profile.name },
-        reason: "Wearer tapped 'I am OK' check-in prompt on watch screen",
-        note: "Ananya Rao confirmed safe status directly on wrist band.",
+        reason: "Wearer confirmed 'I am OK' check-in prompt on Living Guardian room node",
+        note: "Ananya Rao confirmed safe status via ambient room interface.",
       });
 
       if (result.success) {
@@ -388,7 +388,7 @@ export function SafetyDashboard() {
   };
 
   const handleRequestReminder = (item: string) => {
-    showToast(`Wristband audio chime sent to Ananya: Reminder for "${item}"`);
+    showToast(`Living Guardian room chime sent to Ananya: Reminder for "${item}"`);
   };
 
   const handleSimulateVoiceCommand = (phrase: string) => {
@@ -403,7 +403,7 @@ export function SafetyDashboard() {
       deviceStatus: "processed",
     };
     setVoiceQueries((prev) => [newLog, ...prev]);
-    showToast(`Wearer spoke to band: "${phrase}"`);
+    showToast(`Wearer spoke to ambient node: "${phrase}"`);
   };
 
   const handleSimulateAcousticAnomaly = () => {
@@ -478,14 +478,17 @@ export function SafetyDashboard() {
           <div>
             <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.16em] text-gx-mint mb-3">
               <span className="w-6 h-[1px] bg-gx-emerald/60" />
-              <span>Interactive Working Prototype</span>
+              <span>Section Four · The Response Experience</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold tracking-tight text-gx-text">
-              Family Safety Dashboard{" "}
+              Coordinated Care Response{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gx-mint to-gx-emerald">
-                Live Preview
+                Console
               </span>
             </h2>
+            <p className="text-sm text-gx-muted max-w-xl mt-2">
+              Transitioning from ambient room signals into an essential instrument for family understanding, ownership, and audited resolution.
+            </p>
           </div>
 
           {/* Prominent Persistent Demo Mode Banner */}

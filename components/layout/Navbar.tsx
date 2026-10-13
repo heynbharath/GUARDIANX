@@ -30,11 +30,13 @@ export function Navbar() {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { name: "Product", href: "#product" },
-    { name: "How It Works", href: "#how-it-works" },
-    { name: "Live Demo", href: "#demo" },
+    { name: "Living Guardian", href: "#living-guardian-hero" },
+    { name: "The Vision", href: "#human-truth" },
+    { name: "Daily Rhythm", href: "#rhythm" },
+    { name: "Interactive Space", href: "#interactive-guardian" },
+    { name: "Response Console", href: "#demo" },
     { name: "Architecture", href: "#architecture" },
-    { name: "Safety & Privacy", href: "#safety" },
+    { name: "Ethical Principles", href: "#principles" },
     { name: "Project", href: "#project" },
   ];
 

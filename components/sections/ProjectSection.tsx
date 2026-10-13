@@ -78,25 +78,28 @@ export function ProjectSection() {
 
             <div>
               <div className="text-[10px] font-mono uppercase tracking-widest text-gx-muted">
-                RESEARCH INITIATIVE
+                PROJECT INITIATIVE
               </div>
               <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-gx-text mt-1">
-                GuardianX Safety Labs
+                GuardianX
               </h3>
+              <div className="text-xs font-mono text-gx-mint mt-1">
+                Created by Sunaina Mohapatra
+              </div>
             </div>
 
             {/* Structured Metadata Rows */}
             <div className="space-y-3 pt-2 text-xs">
               <div className="flex items-center justify-between py-2 border-b border-white/[0.04]">
-                <span className="text-gx-muted">Project Name:</span>
+                <span className="text-gx-muted">Creator:</span>
                 <span className="font-display font-bold text-gx-text">
-                  {PROJECT_CONFIG.projectName}
+                  Sunaina Mohapatra
                 </span>
               </div>
               <div className="flex items-center justify-between py-2 border-b border-white/[0.04]">
                 <span className="text-gx-muted">Domain Category:</span>
                 <span className="font-mono text-gx-mint">
-                  {PROJECT_CONFIG.category}
+                  Elderly Remote Safety & Spatial Coordination
                 </span>
               </div>
               <div className="flex items-center justify-between py-2 border-b border-white/[0.04]">
@@ -106,15 +109,15 @@ export function ProjectSection() {
                 </span>
               </div>
               <div className="flex items-center justify-between py-2 border-b border-white/[0.04]">
-                <span className="text-gx-muted">Sensor Specification:</span>
+                <span className="text-gx-muted">Signature Metaphor:</span>
                 <span className="font-mono text-gx-text">
-                  6-DoF IMU & BLE 5.3 Profile
+                  The Living Guardian (Ambient Room Mesh)
                 </span>
               </div>
               <div className="flex items-center justify-between py-2 border-b border-white/[0.04]">
                 <span className="text-gx-muted">Architecture:</span>
                 <span className="font-mono text-gx-mint">
-                  Next.js + Deterministic State Machine
+                  Next.js 15 App Router + State Machine
                 </span>
               </div>
             </div>

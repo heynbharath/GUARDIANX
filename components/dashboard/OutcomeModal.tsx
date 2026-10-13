@@ -63,7 +63,7 @@ export function OutcomeModal({
             >
               <option value="fall_assisted">Fall Assisted (Caregiver / Neighbor checked)</option>
               <option value="inactivity_resting">Inactivity Resolved (Elder was resting peacefully)</option>
-              <option value="false_alarm_movement">False Alarm (Watch dropped or bed transition)</option>
+              <option value="false_alarm_movement">False Alarm (Transient vibration or bed transition)</option>
               <option value="device_issue">Device Issue (Low battery / Connection restored)</option>
               <option value="other">Other Outcome Documented</option>
             </select>

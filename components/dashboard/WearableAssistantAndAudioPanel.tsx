@@ -37,13 +37,13 @@ export function WearableAssistantAndAudioPanel({
           </div>
           <div>
             <h4 className="font-display font-bold text-base text-gx-text flex items-center gap-2">
-              Wearable Voice Assistant & Noise Detection
+              Ambient Voice Assistant & Acoustic Sentinel
               <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/30">
-                Alexa-Style Pulse Band
+                Living Guardian Spatial Audio
               </span>
             </h4>
             <p className="text-xs text-gx-muted">
-              Hands-free speech commands, wellness conversations & environmental noise anomalies
+              Hands-free voice recognition, room wellness dialogue & environmental noise anomaly detection
             </p>
           </div>
         </div>
@@ -79,7 +79,7 @@ export function WearableAssistantAndAudioPanel({
           <div className="p-4 rounded-xl bg-[#091713]/80 border border-gx-border/80">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-mono uppercase text-gx-muted">
-                Simulate Wearer Voice Commands (Pulse Band Microphone)
+                Simulate Ambient Room Voice Commands (Living Guardian Spatial Mic Array)
               </span>
               <span className="text-[11px] font-mono text-purple-400 flex items-center gap-1">
                 <Radio className="w-3 h-3 animate-pulse" /> Always-Listening Hotword &quot;Guardian&quot;
