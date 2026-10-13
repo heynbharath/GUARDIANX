@@ -92,10 +92,10 @@ export function LivingGuardianExperienceSection() {
         />
 
         {/* Live Scenario Control Deck */}
-        <div className="mt-8 p-4 sm:p-5 rounded-2xl bg-[#091814] border border-gx-border flex flex-wrap items-center justify-between gap-4 shadow-panel">
+        <div className="mt-8 p-4 sm:p-5 rounded-2xl bg-gx-carbon border border-gx-border flex flex-wrap items-center justify-between gap-4 shadow-panel">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-gx-mint" />
-            <span className="text-xs font-mono uppercase tracking-wider text-gx-text font-bold">
+            <Sparkles className="w-4 h-4 text-gx-citron" />
+            <span className="text-xs font-mono uppercase tracking-wider text-gx-warmWhite font-bold">
               Simulate Environmental Event:
             </span>
           </div>
@@ -105,8 +105,8 @@ export function LivingGuardianExperienceSection() {
               onClick={handleTriggerInactivity}
               className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all ${
                 activeScenario === "inactivity"
-                  ? "bg-amber-400 text-[#091713] font-bold"
-                  : "bg-black/40 text-gx-text border border-gx-border hover:border-gx-mint"
+                  ? "bg-gx-amber text-gx-obsidian font-bold"
+                  : "bg-gx-obsidian text-gx-mineral border border-gx-border hover:border-gx-citron hover:text-gx-warmWhite"
               }`}
             >
               Simulate Unusual Inactivity
@@ -115,8 +115,8 @@ export function LivingGuardianExperienceSection() {
               onClick={handleTriggerFall}
               className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all ${
                 activeScenario === "fall"
-                  ? "bg-rose-500 text-white font-bold"
-                  : "bg-black/40 text-gx-text border border-gx-border hover:border-gx-mint"
+                  ? "bg-gx-vermilion text-gx-warmWhite font-bold"
+                  : "bg-gx-obsidian text-gx-mineral border border-gx-border hover:border-gx-vermilion hover:text-gx-warmWhite"
               }`}
             >
               Simulate Kinetic Fall Spike
@@ -125,15 +125,15 @@ export function LivingGuardianExperienceSection() {
               onClick={handleTriggerNoise}
               className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all ${
                 activeScenario === "noise"
-                  ? "bg-purple-400 text-[#091713] font-bold"
-                  : "bg-black/40 text-gx-text border border-gx-border hover:border-gx-mint"
+                  ? "bg-gx-citron text-gx-obsidian font-bold"
+                  : "bg-gx-obsidian text-gx-mineral border border-gx-border hover:border-gx-citron hover:text-gx-warmWhite"
               }`}
             >
               Simulate Acoustic Anomaly
             </button>
             <button
               onClick={handleReset}
-              className="px-3 py-1.5 rounded-xl text-xs font-mono text-gx-muted hover:text-gx-text border border-gx-border/60 hover:bg-white/[0.04] flex items-center gap-1"
+              className="px-3 py-1.5 rounded-xl text-xs font-mono text-gx-mineral hover:text-gx-warmWhite border border-gx-border/60 hover:bg-gx-graphite flex items-center gap-1"
             >
               <RotateCcw className="w-3.5 h-3.5" /> Reset
             </button>
@@ -141,20 +141,20 @@ export function LivingGuardianExperienceSection() {
         </div>
 
         {/* State Banner */}
-        <div className="mt-3 p-3.5 rounded-xl bg-black/60 border border-gx-border/70 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+        <div className="mt-3 p-3.5 rounded-xl bg-gx-obsidian/80 border border-gx-border/70 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
           <div className="flex items-center gap-2.5">
             <span
               className={`w-2.5 h-2.5 rounded-full ${
                 simulationState === "checkin_prompt"
-                  ? "bg-rose-400 animate-ping"
+                  ? "bg-gx-vermilion animate-ping"
                   : simulationState === "evaluating"
-                  ? "bg-amber-400 animate-pulse"
+                  ? "bg-gx-amber animate-pulse"
                   : simulationState === "acknowledged"
-                  ? "bg-gx-mint"
-                  : "bg-gx-emerald"
+                  ? "bg-gx-citron"
+                  : "bg-gx-citron"
               }`}
             />
-            <span className="text-gx-text font-medium">{activeLog}</span>
+            <span className="text-gx-warmWhite font-medium">{activeLog}</span>
           </div>
 
           {/* Interactive Response Triggers if alert active */}
@@ -162,13 +162,13 @@ export function LivingGuardianExperienceSection() {
             <div className="flex items-center gap-2">
               <button
                 onClick={handleElderCheckIn}
-                className="px-3 py-1 rounded-lg text-xs font-mono bg-gx-emerald text-[#091713] font-bold hover:bg-gx-mint transition-colors"
+                className="px-3 py-1 rounded-lg text-xs font-mono bg-gx-citron text-gx-obsidian font-bold hover:bg-lime-400 transition-colors"
               >
                 Elder: Tap &quot;I Am OK&quot;
               </button>
               <button
                 onClick={handleCaregiverAck}
-                className="px-3 py-1 rounded-lg text-xs font-mono bg-amber-400/20 text-amber-200 border border-amber-400/40 hover:bg-amber-400/30 transition-colors"
+                className="px-3 py-1 rounded-lg text-xs font-mono bg-gx-carbon text-gx-amber border border-gx-amber/40 hover:bg-gx-amber/10 transition-colors"
               >
                 Caregiver: Acknowledge
               </button>
@@ -193,12 +193,12 @@ export function LivingGuardianExperienceSection() {
         </div>
 
         {/* Conceptual Transparency Notice */}
-        <div className="mt-4 p-4 rounded-2xl bg-black/40 border border-gx-border/40 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-gx-muted">
+        <div className="mt-4 p-4 rounded-2xl bg-gx-obsidian/60 border border-gx-border/40 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-gx-mineral">
           <div className="flex items-center gap-2">
-            <Compass className="w-4 h-4 text-gx-mint shrink-0" />
-            <span>INTERACTIVE CONCEPT · SIMULATED DATA · ZERO REAL EXTERNAL DISPATCHES</span>
+            <Compass className="w-4 h-4 text-gx-citron shrink-0" />
+            <span>INTERACTIVE PROTOTYPE · SIMULATED DATA · ZERO REAL EXTERNAL DISPATCHES</span>
           </div>
-          <span>Bengaluru Concept Sandbox</span>
+          <span>Independent Residence Simulation</span>
         </div>
       </Container>
     </section>

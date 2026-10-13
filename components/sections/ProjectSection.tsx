@@ -77,65 +77,65 @@ export function ProjectSection() {
             </div>
 
             <div>
-              <div className="text-[10px] font-mono uppercase tracking-widest text-gx-muted">
+              <div className="text-[10px] font-mono uppercase tracking-widest text-gx-mineral">
                 PROJECT INITIATIVE
               </div>
-              <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-gx-text mt-1">
+              <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-gx-warmWhite mt-1">
                 GuardianX
               </h3>
-              <div className="text-xs font-mono text-gx-mint mt-1">
-                Created by Sunaina Mohapatra
+              <div className="text-xs font-mono text-gx-vermilion mt-1">
+                Creator: Sunaina Mohapatra
               </div>
             </div>
 
             {/* Structured Metadata Rows */}
             <div className="space-y-3 pt-2 text-xs">
-              <div className="flex items-center justify-between py-2 border-b border-white/[0.04]">
-                <span className="text-gx-muted">Creator:</span>
-                <span className="font-display font-bold text-gx-text">
+              <div className="flex items-center justify-between py-2 border-b border-gx-border/40">
+                <span className="text-gx-mineral">Creator:</span>
+                <span className="font-display font-bold text-gx-warmWhite">
                   Sunaina Mohapatra
                 </span>
               </div>
-              <div className="flex items-center justify-between py-2 border-b border-white/[0.04]">
-                <span className="text-gx-muted">Domain Category:</span>
-                <span className="font-mono text-gx-mint">
-                  Elderly Remote Safety & Spatial Coordination
+              <div className="flex items-center justify-between py-2 border-b border-gx-border/40">
+                <span className="text-gx-mineral">Category:</span>
+                <span className="font-mono text-gx-chalk">
+                  Independent-Living Safety Intelligence
                 </span>
               </div>
-              <div className="flex items-center justify-between py-2 border-b border-white/[0.04]">
-                <span className="text-gx-muted">Development Stage:</span>
-                <span className="font-mono text-gx-lime">
-                  Concept & Interactive Prototype
+              <div className="flex items-center justify-between py-2 border-b border-gx-border/40">
+                <span className="text-gx-mineral">Development Stage:</span>
+                <span className="font-mono text-gx-citron">
+                  Concept and interactive frontend prototype
                 </span>
               </div>
-              <div className="flex items-center justify-between py-2 border-b border-white/[0.04]">
-                <span className="text-gx-muted">Signature Metaphor:</span>
-                <span className="font-mono text-gx-text">
+              <div className="flex items-center justify-between py-2 border-b border-gx-border/40">
+                <span className="text-gx-mineral">Signature Paradigm:</span>
+                <span className="font-mono text-gx-warmWhite">
                   The Living Guardian (Ambient Room Mesh)
                 </span>
               </div>
-              <div className="flex items-center justify-between py-2 border-b border-white/[0.04]">
-                <span className="text-gx-muted">Architecture:</span>
-                <span className="font-mono text-gx-mint">
-                  Next.js 15 App Router + State Machine
+              <div className="flex items-center justify-between py-2 border-b border-gx-border/40">
+                <span className="text-gx-mineral">Engineering Stack:</span>
+                <span className="font-mono text-gx-chalk">
+                  Next.js App Router + Typed State Machine
                 </span>
               </div>
             </div>
 
             {/* Ethical statement */}
-            <div className="p-4 rounded-2xl bg-black/30 border border-gx-border/40 text-[11px] text-gx-muted leading-relaxed">
-              <strong className="text-gx-text block mb-1 font-mono uppercase text-[10px]">
+            <div className="p-4 rounded-2xl bg-gx-obsidian/70 border border-gx-border/40 text-[11px] text-gx-mineral leading-relaxed">
+              <strong className="text-gx-warmWhite block mb-1 font-mono uppercase text-[10px]">
                 Responsible Engineering Rationale:
               </strong>
-              GuardianX adheres to strict privacy and academic integrity. No inflated clinical performance claims, artificial citations, or mock institutional endorsements are included.
+              GuardianX adheres to strict privacy and design integrity. No inflated clinical performance claims, artificial citations, or mock institutional endorsements are included.
             </div>
           </div>
 
           {/* Right Column: Incremental Roadmap (7 cols) */}
           <div className="lg:col-span-7 space-y-6">
             <div className="flex items-center justify-between pb-2 border-b border-gx-border/40">
-              <h3 className="font-display font-bold text-xl text-gx-text flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-gx-mint" />
+              <h3 className="font-display font-bold text-xl text-gx-warmWhite flex items-center gap-2">
+                <Calendar className="w-4 h-4 text-gx-vermilion" />
                 <span>Incremental Development Roadmap</span>
               </h3>
               <span className="text-[11px] font-mono text-gx-muted">
@@ -153,32 +153,32 @@ export function ProjectSection() {
                     key={stage.step}
                     className={`p-5 rounded-2xl border transition-all ${
                       isCurrent
-                        ? "bg-[#10271e] border-gx-mint/50 shadow-[0_4px_25px_rgba(0,0,0,0.3)]"
-                        : "bg-gx-panel/30 border-gx-border/50"
+                        ? "bg-gx-carbon border-gx-citron/50 shadow-[0_4px_25px_rgba(0,0,0,0.5)]"
+                        : "bg-gx-carbon/40 border-gx-border/50"
                     }`}
                   >
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-3">
-                        <span className="font-mono text-xs font-bold text-gx-mint">
+                        <span className="font-mono text-xs font-bold text-gx-citron">
                           PHASE {stage.step}
                         </span>
-                        <h4 className="font-display font-bold text-sm text-gx-text">
+                        <h4 className="font-display font-bold text-sm text-gx-warmWhite">
                           {stage.name}
                         </h4>
                       </div>
                       <span
                         className={`text-[10px] font-mono uppercase px-2 py-0.5 rounded border ${
                           isDone
-                            ? "bg-emerald-950/40 text-gx-emerald border-emerald-500/30"
+                            ? "bg-gx-carbon text-gx-chalk border-gx-chalk/30"
                             : isCurrent
-                            ? "bg-lime-950/40 text-gx-lime border-lime-400/30"
-                            : "bg-black/30 text-gx-muted border-gx-border"
+                            ? "bg-gx-carbon text-gx-citron border-gx-citron/40 font-bold"
+                            : "bg-gx-obsidian/40 text-gx-mineral border-gx-border"
                         }`}
                       >
                         {stage.status}
                       </span>
                     </div>
-                    <p className="text-xs text-gx-muted leading-relaxed">
+                    <p className="text-xs text-gx-mineral leading-relaxed">
                       {stage.desc}
                     </p>
                   </div>

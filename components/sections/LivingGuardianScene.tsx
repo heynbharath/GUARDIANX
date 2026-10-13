@@ -108,63 +108,63 @@ export function LivingGuardianScene({ activeSimulatedEvent, interactive = true }
   const isAlertInThisRoom = activeSimulatedEvent && activeSimulatedEvent.room === selectedRoom;
 
   return (
-    <div className="relative w-full rounded-3xl bg-[#06110e] border border-gx-border/80 overflow-hidden shadow-panel">
-      {/* Cinematic Studio Backdrop Grid & Ambient Lighting */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_40%,rgba(184,255,217,0.06)_0%,rgba(8,23,19,0.95)_70%,#040907_100%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(184,255,217,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(184,255,217,0.015)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none opacity-60" />
+    <div className="relative w-full rounded-3xl bg-gx-obsidian border border-gx-border/80 overflow-hidden shadow-panel">
+      {/* Cinematic Studio Backdrop Grid & Directional Amber/Vermilion Lighting */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_35%,rgba(198,91,61,0.08)_0%,rgba(34,34,31,0.95)_70%,#171715_100%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(233,225,210,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(233,225,210,0.02)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none opacity-50" />
 
       {/* Top Atmosphere Status Bar */}
-      <div className="relative z-10 px-5 py-4 border-b border-gx-border/50 flex flex-wrap items-center justify-between gap-3 bg-[#081713]/80 backdrop-blur-md">
+      <div className="relative z-10 px-5 py-4 border-b border-gx-border/50 flex flex-wrap items-center justify-between gap-3 bg-gx-carbon/90 backdrop-blur-md">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-gx-mint/20 to-gx-emerald/10 border border-gx-mint/30 flex items-center justify-center text-gx-mint">
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-gx-vermilion/20 to-gx-clay/10 border border-gx-vermilion/30 flex items-center justify-center text-gx-vermilion">
             <Compass className="w-4 h-4 animate-spin-slow" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-xs font-mono uppercase tracking-[0.2em] text-gx-mint font-semibold">
+              <span className="text-xs font-mono uppercase tracking-[0.2em] text-gx-chalk font-semibold">
                 The Living Guardian
               </span>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-gx-emerald/10 text-gx-emerald border border-gx-emerald/30">
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-gx-carbon text-gx-citron border border-gx-citron/30">
                 Spatial Architecture Layer
               </span>
             </div>
-            <div className="text-[11px] text-gx-muted">
-              Interactive Architectural Cutaway · Fictional Residence of Ananya Rao (Bengaluru)
+            <div className="text-[11px] text-gx-mineral">
+              Conceptual Architectural Environment · Independent Residence Simulation
             </div>
           </div>
         </div>
 
         {/* Time of Day Cycle Preview Controls */}
-        <div className="flex items-center gap-1.5 p-1 rounded-xl bg-black/40 border border-gx-border/60 text-xs font-mono">
+        <div className="flex items-center gap-1.5 p-1 rounded-xl bg-gx-obsidian border border-gx-border/60 text-xs font-mono">
           <button
             onClick={() => setTimeOfDay("morning")}
             className={`px-2.5 py-1 rounded-lg flex items-center gap-1.5 transition-all ${
               timeOfDay === "morning"
-                ? "bg-amber-400/20 text-amber-200 border border-amber-400/30 font-bold"
-                : "text-gx-muted hover:text-gx-text"
+                ? "bg-gx-amber/20 text-gx-amber border border-gx-amber/40 font-bold"
+                : "text-gx-mineral hover:text-gx-warmWhite"
             }`}
           >
-            <Sun className="w-3.5 h-3.5 text-amber-300" /> Morning Rhythm
+            <Sun className="w-3.5 h-3.5 text-gx-amber" /> Morning Rhythm
           </button>
           <button
             onClick={() => setTimeOfDay("afternoon")}
             className={`px-2.5 py-1 rounded-lg flex items-center gap-1.5 transition-all ${
               timeOfDay === "afternoon"
-                ? "bg-gx-mint/20 text-gx-mint border border-gx-mint/30 font-bold"
-                : "text-gx-muted hover:text-gx-text"
+                ? "bg-gx-citron/20 text-gx-citron border border-gx-citron/40 font-bold"
+                : "text-gx-mineral hover:text-gx-warmWhite"
             }`}
           >
-            <Coffee className="w-3.5 h-3.5 text-gx-mint" /> Afternoon Rest
+            <Coffee className="w-3.5 h-3.5 text-gx-citron" /> Afternoon Rest
           </button>
           <button
             onClick={() => setTimeOfDay("evening")}
             className={`px-2.5 py-1 rounded-lg flex items-center gap-1.5 transition-all ${
               timeOfDay === "evening"
-                ? "bg-indigo-400/20 text-indigo-200 border border-indigo-400/30 font-bold"
-                : "text-gx-muted hover:text-gx-text"
+                ? "bg-gx-vermilion/20 text-gx-vermilion border border-gx-vermilion/40 font-bold"
+                : "text-gx-mineral hover:text-gx-warmWhite"
             }`}
           >
-            <Moon className="w-3.5 h-3.5 text-indigo-300" /> Evening Calm
+            <Moon className="w-3.5 h-3.5 text-gx-vermilion" /> Nocturnal Safety
           </button>
         </div>
       </div>
@@ -182,33 +182,33 @@ export function LivingGuardianScene({ activeSimulatedEvent, interactive = true }
               <defs>
                 {/* Linear and Radial Gradients for Rooms */}
                 <linearGradient id="wallGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#48d6a2" stopOpacity="0.4" />
-                  <stop offset="100%" stopColor="#10271e" stopOpacity="0.1" />
+                  <stop offset="0%" stopColor="#C65B3D" stopOpacity="0.4" />
+                  <stop offset="100%" stopColor="#22221F" stopOpacity="0.1" />
                 </linearGradient>
 
                 <linearGradient id="livingFloor" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={selectedRoom === "living" ? "#194537" : "#0e2920"} />
-                  <stop offset="100%" stopColor="#081813" />
+                  <stop offset="0%" stopColor={selectedRoom === "living" ? "#39382F" : "#22221F"} />
+                  <stop offset="100%" stopColor="#171715" />
                 </linearGradient>
 
                 <linearGradient id="bedroomFloor" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={selectedRoom === "bedroom" ? "#1b4038" : "#0b221b"} />
-                  <stop offset="100%" stopColor="#06130f" />
+                  <stop offset="0%" stopColor={selectedRoom === "bedroom" ? "#34332B" : "#1F1F1C"} />
+                  <stop offset="100%" stopColor="#141412" />
                 </linearGradient>
 
                 <linearGradient id="kitchenFloor" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={selectedRoom === "kitchen" ? "#20463b" : "#0c261e"} />
-                  <stop offset="100%" stopColor="#081813" />
+                  <stop offset="0%" stopColor={selectedRoom === "kitchen" ? "#38362D" : "#21201D"} />
+                  <stop offset="100%" stopColor="#151513" />
                 </linearGradient>
 
                 <linearGradient id="corridorFloor" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={selectedRoom === "corridor" ? "#1d4439" : "#0d271f"} />
-                  <stop offset="100%" stopColor="#071712" />
+                  <stop offset="0%" stopColor={selectedRoom === "corridor" ? "#32312A" : "#1E1E1B"} />
+                  <stop offset="100%" stopColor="#131311" />
                 </linearGradient>
 
                 <radialGradient id="sunlightPool" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#ffe699" stopOpacity={timeOfDay === "morning" ? "0.22" : "0.08"} />
-                  <stop offset="100%" stopColor="#000000" stopOpacity="0" />
+                  <stop offset="0%" stopColor="#DDA85E" stopOpacity={timeOfDay === "morning" ? "0.28" : "0.1"} />
+                  <stop offset="100%" stopColor="#171715" stopOpacity="0" />
                 </radialGradient>
 
                 <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
@@ -218,7 +218,7 @@ export function LivingGuardianScene({ activeSimulatedEvent, interactive = true }
               </defs>
 
               {/* Architectural Ground Shadow */}
-              <ellipse cx="400" cy="340" rx="340" ry="110" fill="rgba(0,0,0,0.5)" />
+              <ellipse cx="400" cy="340" rx="340" ry="110" fill="rgba(0,0,0,0.65)" />
 
               {/* Isometric Architectural Room Slabs */}
 
@@ -233,7 +233,7 @@ export function LivingGuardianScene({ activeSimulatedEvent, interactive = true }
                 <polygon
                   points="210,170 380,85 430,135 260,220"
                   fill="url(#bedroomFloor)"
-                  stroke={selectedRoom === "bedroom" ? "#b8ffd9" : "#224e3e"}
+                  stroke={selectedRoom === "bedroom" ? "#E9E1D2" : "#39382F"}
                   strokeWidth={selectedRoom === "bedroom" ? "2.5" : "1"}
                   strokeDasharray={selectedRoom === "bedroom" ? "none" : "3,3"}
                   filter={selectedRoom === "bedroom" ? "url(#softGlow)" : undefined}
@@ -242,27 +242,27 @@ export function LivingGuardianScene({ activeSimulatedEvent, interactive = true }
                 <polyline
                   points="210,170 210,110 380,25 380,85"
                   fill="none"
-                  stroke={selectedRoom === "bedroom" ? "#48d6a2" : "#1a3b30"}
+                  stroke={selectedRoom === "bedroom" ? "#C65B3D" : "#39382F"}
                   strokeWidth="1.5"
                 />
                 <polyline
                   points="380,25 430,75 430,135"
                   fill="none"
-                  stroke={selectedRoom === "bedroom" ? "#48d6a2" : "#1a3b30"}
+                  stroke={selectedRoom === "bedroom" ? "#C65B3D" : "#39382F"}
                   strokeWidth="1"
                 />
                 {/* Bed Furniture Glyph */}
                 <polygon
                   points="260,160 330,125 365,160 295,195"
-                  fill="#123528"
-                  stroke="#356653"
+                  fill="#2A2A26"
+                  stroke="#4E4D43"
                   strokeWidth="1"
                 />
-                <ellipse cx="330" cy="145" rx="14" ry="7" fill="#1e4e3b" />
+                <ellipse cx="330" cy="145" rx="14" ry="7" fill="#39382F" />
                 {/* Bedroom Ambient Light Pool */}
                 <circle cx="310" cy="160" r="45" fill="url(#sunlightPool)" pointerEvents="none" />
                 {/* Room Label Anchor */}
-                <text x="270" y="130" fill="#9bb4a8" fontSize="11" fontFamily="DM Mono">
+                <text x="270" y="130" fill="#77766E" fontSize="11" fontFamily="DM Mono">
                   BEDROOM
                 </text>
               </g>
@@ -278,7 +278,7 @@ export function LivingGuardianScene({ activeSimulatedEvent, interactive = true }
                 <polygon
                   points="380,85 550,170 490,230 320,145"
                   fill="url(#kitchenFloor)"
-                  stroke={selectedRoom === "kitchen" ? "#b8ffd9" : "#224e3e"}
+                  stroke={selectedRoom === "kitchen" ? "#E9E1D2" : "#39382F"}
                   strokeWidth={selectedRoom === "kitchen" ? "2.5" : "1"}
                   strokeDasharray={selectedRoom === "kitchen" ? "none" : "3,3"}
                   filter={selectedRoom === "kitchen" ? "url(#softGlow)" : undefined}
@@ -287,19 +287,19 @@ export function LivingGuardianScene({ activeSimulatedEvent, interactive = true }
                 <polyline
                   points="550,170 550,110 380,25"
                   fill="none"
-                  stroke={selectedRoom === "kitchen" ? "#48d6a2" : "#1a3b30"}
+                  stroke={selectedRoom === "kitchen" ? "#C65B3D" : "#39382F"}
                   strokeWidth="1.5"
                 />
                 {/* Kitchen Countertop Cutaway */}
                 <polygon
                   points="460,165 520,135 535,150 475,180"
-                  fill="#143c2f"
-                  stroke="#38725d"
+                  fill="#2A2A26"
+                  stroke="#4E4D43"
                   strokeWidth="1"
                 />
                 {/* Kitchen Ambient Light Pool */}
                 <circle cx="430" cy="150" r="40" fill="url(#sunlightPool)" pointerEvents="none" />
-                <text x="410" y="125" fill="#9bb4a8" fontSize="11" fontFamily="DM Mono">
+                <text x="410" y="125" fill="#77766E" fontSize="11" fontFamily="DM Mono">
                   KITCHEN
                 </text>
               </g>
@@ -314,11 +314,11 @@ export function LivingGuardianScene({ activeSimulatedEvent, interactive = true }
                 <polygon
                   points="260,220 430,135 480,185 310,270"
                   fill="url(#corridorFloor)"
-                  stroke={selectedRoom === "corridor" ? "#b8ffd9" : "#1e4437"}
+                  stroke={selectedRoom === "corridor" ? "#E9E1D2" : "#39382F"}
                   strokeWidth={selectedRoom === "corridor" ? "2.5" : "1"}
                   filter={selectedRoom === "corridor" ? "url(#softGlow)" : undefined}
                 />
-                <text x="350" y="195" fill="#9bb4a8" fontSize="10" fontFamily="DM Mono">
+                <text x="350" y="195" fill="#77766E" fontSize="10" fontFamily="DM Mono">
                   CORRIDOR
                 </text>
               </g>
@@ -334,7 +334,7 @@ export function LivingGuardianScene({ activeSimulatedEvent, interactive = true }
                 <polygon
                   points="190,290 360,205 600,325 430,410"
                   fill="url(#livingFloor)"
-                  stroke={selectedRoom === "living" ? "#b8ffd9" : "#285c49"}
+                  stroke={selectedRoom === "living" ? "#E9E1D2" : "#39382F"}
                   strokeWidth={selectedRoom === "living" ? "3" : "1.2"}
                   filter={selectedRoom === "living" ? "url(#softGlow)" : undefined}
                 />
@@ -342,23 +342,23 @@ export function LivingGuardianScene({ activeSimulatedEvent, interactive = true }
                 <polyline
                   points="190,290 190,260 270,220 270,250"
                   fill="none"
-                  stroke="#48d6a2"
+                  stroke="#C65B3D"
                   strokeWidth="1.5"
                   strokeDasharray="4,2"
                 />
                 {/* Seating / Coffee Table Geometry */}
                 <polygon
                   points="330,300 400,265 440,285 370,320"
-                  fill="#174435"
-                  stroke="#3e846b"
+                  fill="#2A2A26"
+                  stroke="#4E4D43"
                   strokeWidth="1"
                 />
-                <ellipse cx="385" cy="292" rx="18" ry="9" fill="#1b4d3c" />
+                <ellipse cx="385" cy="292" rx="18" ry="9" fill="#39382F" />
                 {/* Reading Chair / Window Alcove */}
-                <ellipse cx="280" cy="310" rx="16" ry="10" fill="#205946" stroke="#48d6a2" strokeWidth="0.8" />
+                <ellipse cx="280" cy="310" rx="16" ry="10" fill="#32312A" stroke="#C65B3D" strokeWidth="0.8" />
                 {/* Generous Warm Light Pool for Living Room */}
                 <circle cx="360" cy="290" r="75" fill="url(#sunlightPool)" pointerEvents="none" />
-                <text x="320" y="360" fill="#b8ffd9" fontSize="12" fontWeight="bold" fontFamily="DM Mono">
+                <text x="320" y="360" fill="#E9E1D2" fontSize="12" fontWeight="bold" fontFamily="DM Mono">
                   LIVING ROOM & BALCONY
                 </text>
               </g>
@@ -369,24 +369,24 @@ export function LivingGuardianScene({ activeSimulatedEvent, interactive = true }
                 <path
                   d="M 310,160 Q 360,180 370,200 T 430,160 T 360,220 T 370,290"
                   fill="none"
-                  stroke="#b8ffd9"
+                  stroke="#D4E45A"
                   strokeWidth="2"
                   strokeDasharray="6,4"
                   strokeDashoffset={-pulseRhythm}
-                  opacity="0.8"
+                  opacity="0.85"
                 />
                 {/* Dynamic Pulsing Luminous Sensor Nodes */}
-                <circle cx="310" cy="160" r="4" fill="#48d6a2" className="animate-ping" opacity="0.4" />
-                <circle cx="310" cy="160" r="3" fill="#b8ffd9" />
+                <circle cx="310" cy="160" r="4" fill="#D4E45A" className="animate-ping" opacity="0.3" />
+                <circle cx="310" cy="160" r="3" fill="#D4E45A" />
 
-                <circle cx="440" cy="155" r="4" fill="#48d6a2" className="animate-ping" opacity="0.4" />
-                <circle cx="440" cy="155" r="3" fill="#b8ffd9" />
+                <circle cx="440" cy="155" r="4" fill="#D4E45A" className="animate-ping" opacity="0.3" />
+                <circle cx="440" cy="155" r="3" fill="#D4E45A" />
 
-                <circle cx="370" cy="200" r="4" fill="#48d6a2" className="animate-ping" opacity="0.4" />
-                <circle cx="370" cy="200" r="3" fill="#b8ffd9" />
+                <circle cx="370" cy="200" r="4" fill="#D4E45A" className="animate-ping" opacity="0.3" />
+                <circle cx="370" cy="200" r="3" fill="#D4E45A" />
 
-                <circle cx="370" cy="290" r="5" fill="#48d6a2" className="animate-ping" opacity="0.6" />
-                <circle cx="370" cy="290" r="3.5" fill="#ffffff" />
+                <circle cx="370" cy="290" r="5" fill="#D4E45A" className="animate-ping" opacity="0.5" />
+                <circle cx="370" cy="290" r="3.5" fill="#F5F1E8" />
               </g>
 
               {/* Active Simulated Alert Marker (if room has candidate event) */}
@@ -397,7 +397,7 @@ export function LivingGuardianScene({ activeSimulatedEvent, interactive = true }
                     cy={activeSimulatedEvent.room === "living" ? 290 : 160}
                     r="28"
                     fill="none"
-                    stroke="#ff9b87"
+                    stroke="#C65B3D"
                     strokeWidth="2"
                     className="animate-ping"
                   />
@@ -405,12 +405,12 @@ export function LivingGuardianScene({ activeSimulatedEvent, interactive = true }
                     cx={activeSimulatedEvent.room === "living" ? 370 : 310}
                     cy={activeSimulatedEvent.room === "living" ? 290 : 160}
                     r="8"
-                    fill="#ff9b87"
+                    fill="#C65B3D"
                   />
                   <text
                     x={activeSimulatedEvent.room === "living" ? 410 : 350}
                     y={activeSimulatedEvent.room === "living" ? 295 : 165}
-                    fill="#ff9b87"
+                    fill="#C65B3D"
                     fontSize="11"
                     fontFamily="DM Mono"
                     fontWeight="bold"
@@ -434,8 +434,8 @@ export function LivingGuardianScene({ activeSimulatedEvent, interactive = true }
                   onClick={() => setSelectedRoom(rId)}
                   className={`px-3 py-1 rounded-lg capitalize transition-all ${
                     selectedRoom === rId
-                      ? "bg-gx-emerald text-[#081813] font-bold shadow-sm"
-                      : "bg-[#0b1b16] text-gx-muted hover:text-gx-text border border-gx-border/60"
+                      ? "bg-gx-vermilion text-gx-warmWhite font-bold shadow-sm"
+                      : "bg-gx-carbon text-gx-mineral hover:text-gx-warmWhite border border-gx-border/60"
                   }`}
                 >
                   {rId}
@@ -446,63 +446,63 @@ export function LivingGuardianScene({ activeSimulatedEvent, interactive = true }
         </div>
 
         {/* Right Architectural Data & Intelligence Panel (4 Columns) */}
-        <div className="lg:col-span-4 p-5 sm:p-6 bg-[#0a1b16]/90 border-t lg:border-t-0 lg:border-l border-gx-border/60 flex flex-col justify-between text-left space-y-4">
+        <div className="lg:col-span-4 p-5 sm:p-6 bg-gx-carbon/90 border-t lg:border-t-0 lg:border-l border-gx-border/60 flex flex-col justify-between text-left space-y-4">
           <div>
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-gx-mint px-2 py-0.5 rounded bg-gx-mint/10 border border-gx-mint/20">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-gx-chalk px-2 py-0.5 rounded bg-gx-carbon border border-gx-chalk/20">
                 Spatial Node Inspection
               </span>
-              <span className="text-xs font-mono text-gx-muted">
+              <span className="text-xs font-mono text-gx-mineral">
                 {currentRoom.sqft}
               </span>
             </div>
 
-            <h4 className="font-display font-extrabold text-xl text-gx-text mt-2.5">
+            <h4 className="font-display font-extrabold text-xl text-gx-warmWhite mt-2.5">
               {currentRoom.name}
             </h4>
-            <p className="text-xs text-gx-muted mt-1 leading-relaxed">
+            <p className="text-xs text-gx-mineral mt-1 leading-relaxed">
               {currentRoom.activityDescription}
             </p>
           </div>
 
           {/* Ambient Metric Tiles */}
           <div className="space-y-2.5">
-            <div className="p-3 rounded-xl bg-black/40 border border-gx-border/60 text-xs">
-              <div className="text-[10px] font-mono uppercase text-gx-muted">
+            <div className="p-3 rounded-xl bg-gx-obsidian/70 border border-gx-border/60 text-xs">
+              <div className="text-[10px] font-mono uppercase text-gx-mineral">
                 Customary Daily Rhythm
               </div>
-              <div className="text-gx-text font-medium mt-1 leading-snug">
+              <div className="text-gx-warmWhite font-medium mt-1 leading-snug">
                 {currentRoom.normalPattern}
               </div>
             </div>
 
-            <div className="p-3 rounded-xl bg-black/40 border border-gx-border/60 text-xs flex items-center justify-between">
+            <div className="p-3 rounded-xl bg-gx-obsidian/70 border border-gx-border/60 text-xs flex items-center justify-between">
               <div>
-                <div className="text-[10px] font-mono uppercase text-gx-muted">
-                  Light & Sunlight Ambient
+                <div className="text-[10px] font-mono uppercase text-gx-mineral">
+                  Light & Ambient Illumination
                 </div>
-                <div className="text-gx-mint font-mono mt-0.5">
+                <div className="text-gx-amber font-mono mt-0.5">
                   {currentRoom.lightLevel}
                 </div>
               </div>
-              <Sun className="w-4 h-4 text-amber-300" />
+              <Sun className="w-4 h-4 text-gx-amber" />
             </div>
 
-            <div className="p-3 rounded-xl bg-black/40 border border-gx-border/60 text-xs flex items-center justify-between">
+            <div className="p-3 rounded-xl bg-gx-obsidian/70 border border-gx-border/60 text-xs flex items-center justify-between">
               <div>
-                <div className="text-[10px] font-mono uppercase text-gx-muted">
+                <div className="text-[10px] font-mono uppercase text-gx-mineral">
                   Room Presence Telemetry
                 </div>
-                <div className="text-gx-text font-mono mt-0.5">
+                <div className="text-gx-chalk font-mono mt-0.5">
                   {currentRoom.lastPresence}
                 </div>
               </div>
-              <Activity className="w-4 h-4 text-gx-emerald" />
+              <Activity className="w-4 h-4 text-gx-citron" />
             </div>
           </div>
 
           {/* Conceptual Honest Transparency Notice */}
-          <div className="pt-3 border-t border-gx-border/40 text-[11px] font-mono text-gx-muted/80 leading-normal">
+          <div className="pt-3 border-t border-gx-border/40 text-[11px] font-mono text-gx-mineral leading-normal">
             <span className="text-gx-mint font-semibold">Concept Disclosure:</span> Architectural model presents a spatial visualization of environmental telemetry. GuardianX does not employ optical surveillance in private living spaces.
           </div>
         </div>

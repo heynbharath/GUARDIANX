@@ -26,15 +26,15 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variantStyles = {
       primary:
-        "bg-gx-mint text-[#08231a] hover:bg-[#a2f7c9] shadow-[0_8px_25px_rgba(184,255,217,0.2)] hover:shadow-[0_10px_30px_rgba(184,255,217,0.35)]",
+        "bg-gx-vermilion text-gx-warmWhite hover:bg-gx-clay shadow-[0_8px_25px_rgba(198,91,61,0.28)] hover:shadow-[0_12px_32px_rgba(198,91,61,0.45)] border border-gx-vermilion/40",
       secondary:
-        "bg-[rgba(184,255,217,0.06)] text-gx-text border border-gx-border hover:bg-[rgba(184,255,217,0.12)] hover:border-gx-borderGlow",
+        "bg-gx-carbon text-gx-warmWhite border border-gx-border hover:bg-gx-graphite hover:border-gx-chalk/30 transition-colors",
       outline:
-        "bg-transparent text-gx-mint border border-gx-mint/30 hover:border-gx-mint hover:bg-gx-mint/5",
+        "bg-transparent text-gx-chalk border border-gx-chalk/30 hover:border-gx-citron hover:text-gx-citron hover:bg-gx-carbon/40",
       danger:
-        "bg-gx-coral text-[#2a0e08] hover:bg-[#ff8a72] shadow-[0_8px_25px_rgba(255,155,135,0.25)]",
+        "bg-gx-clay text-gx-warmWhite hover:bg-red-700 shadow-[0_8px_25px_rgba(169,71,50,0.3)]",
       ghost:
-        "bg-transparent text-gx-muted hover:text-gx-text hover:bg-[rgba(184,255,217,0.05)]",
+        "bg-transparent text-gx-mineral hover:text-gx-warmWhite hover:bg-gx-carbon/60",
     };
 
     const sizeStyles = {

@@ -6,30 +6,28 @@ import { PROJECT_CONFIG } from "@/lib/project-config";
 
 export function Footer() {
   return (
-    <footer className="border-t border-gx-border bg-[#050e0c] pt-16 pb-12 text-gx-muted text-xs">
+    <footer className="border-t border-gx-border bg-gx-obsidian pt-16 pb-12 text-gx-mineral text-xs">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-gx-border/50">
           {/* Brand & Mission */}
           <div className="md:col-span-2 space-y-4">
             <Link href="#top" className="flex items-center gap-2.5">
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-gx-lime to-gx-emerald flex items-center justify-center text-[#08221a]">
+              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-gx-vermilion to-gx-clay flex items-center justify-center text-gx-warmWhite">
                 <Shield className="w-4 h-4 fill-current" />
               </div>
-              <span className="font-display font-extrabold text-lg tracking-tight text-gx-text">
-                guardian<span className="text-gx-mint">x</span>
+              <span className="font-display font-extrabold text-lg tracking-tight text-gx-warmWhite">
+                GUARDIAN<span className="text-gx-vermilion">X</span>
               </span>
             </Link>
-            <p className="text-gx-muted max-w-sm leading-relaxed">
-              Detect a potential emergency. Understand the situation. Coordinate a
-              response. Keep families informed. A dignified elderly remote safety
-              platform concept.
+            <p className="text-gx-mineral max-w-sm leading-relaxed">
+              Detect a potential safety signal. Interpret context with care. Coordinate family check-ins. Keep human relationships centered. Independent-living safety intelligence.
             </p>
             <div className="flex items-center gap-4 pt-1">
               <a
                 href={PROJECT_CONFIG.githubRepoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-gx-mint hover:underline font-mono text-[11px]"
+                className="inline-flex items-center gap-1.5 text-gx-chalk hover:text-gx-citron font-mono text-[11px] transition-colors"
               >
                 <Github className="w-3.5 h-3.5" />
                 <span>GitHub Repository</span>
@@ -40,52 +38,47 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-mono text-xs uppercase text-gx-text tracking-wider mb-3">
+            <h4 className="font-mono text-xs uppercase text-gx-warmWhite tracking-wider mb-3">
               Navigation
             </h4>
             <ul className="space-y-2">
               <li>
-                <a href="#living-guardian-hero" className="hover:text-gx-mint transition-colors">
+                <a href="#top" className="hover:text-gx-chalk transition-colors">
                   The Living Guardian
                 </a>
               </li>
               <li>
-                <a href="#human-truth" className="hover:text-gx-mint transition-colors">
+                <a href="#human-truth" className="hover:text-gx-chalk transition-colors">
                   The Human Truth
                 </a>
               </li>
               <li>
-                <a href="#rhythm" className="hover:text-gx-mint transition-colors">
+                <a href="#rhythm" className="hover:text-gx-chalk transition-colors">
                   Daily Rhythm & Context
                 </a>
               </li>
               <li>
-                <a href="#interactive-guardian" className="hover:text-gx-mint transition-colors">
+                <a href="#interactive-guardian" className="hover:text-gx-chalk transition-colors">
                   Spatial Environment
                 </a>
               </li>
               <li>
-                <a href="#demo" className="hover:text-gx-mint transition-colors">
+                <a href="#demo" className="hover:text-gx-chalk transition-colors">
                   Care Response Console
                 </a>
               </li>
               <li>
-                <a href="#architecture" className="hover:text-gx-mint transition-colors">
+                <a href="#architecture" className="hover:text-gx-chalk transition-colors">
                   Layered Architecture
                 </a>
               </li>
               <li>
-                <a href="#principles" className="hover:text-gx-mint transition-colors">
+                <a href="#principles" className="hover:text-gx-chalk transition-colors">
                   Ethical Principles
                 </a>
               </li>
               <li>
-                <a href="#capabilities" className="hover:text-gx-mint transition-colors">
-                  Future Capabilities
-                </a>
-              </li>
-              <li>
-                <a href="#project" className="hover:text-gx-mint transition-colors">
+                <a href="#project" className="hover:text-gx-chalk transition-colors">
                   Project & Roadmap
                 </a>
               </li>
@@ -94,34 +87,38 @@ export function Footer() {
 
           {/* Concept Attribution & Context */}
           <div>
-            <h4 className="font-mono text-xs uppercase text-gx-text tracking-wider mb-3">
+            <h4 className="font-mono text-xs uppercase text-gx-warmWhite tracking-wider mb-3">
               Project Context
             </h4>
-            <div className="space-y-2 text-gx-muted">
+            <div className="space-y-2 text-gx-mineral">
               <p>
-                <strong className="text-gx-text block">Initiative:</strong>
-                GuardianX Safety Labs
+                <strong className="text-gx-warmWhite block">Project:</strong>
+                GuardianX
               </p>
               <p>
-                <strong className="text-gx-text block">Category:</strong>
+                <strong className="text-gx-warmWhite block">Category:</strong>
                 {PROJECT_CONFIG.category}
               </p>
               <p>
-                <strong className="text-gx-text block">Status:</strong>
-                {PROJECT_CONFIG.stage}
+                <strong className="text-gx-warmWhite block">Creator:</strong>
+                {PROJECT_CONFIG.creator.name}
+              </p>
+              <p>
+                <strong className="text-gx-warmWhite block">Stage:</strong>
+                Concept and interactive frontend prototype
               </p>
             </div>
           </div>
         </div>
 
         {/* Legal & Medical Simulation Disclaimer */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-gx-muted/80">
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-gx-mineral">
           <div>
-            © {new Date().getFullYear()} GuardianX · Elderly Remote Safety Concept Prototype.
+            © {new Date().getFullYear()} GuardianX · Independent-Living Safety Intelligence.
           </div>
           <div className="max-w-xl text-center md:text-right">
-            <span className="text-gx-lime font-mono">SIMULATION DISCLOSURE:</span> All
-            sensor readings, fall detections, and notifications in this prototype are
+            <span className="text-gx-citron font-mono">SIMULATION DISCLOSURE:</span> All
+            sensor readings, routines, and workflows in this prototype are
             illustrative and simulated in-browser. This prototype does not connect to real
             emergency services, phone networks, or medical equipment.
           </div>

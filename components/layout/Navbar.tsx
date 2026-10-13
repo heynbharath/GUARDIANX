@@ -44,8 +44,8 @@ export function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-[#071311]/90 backdrop-blur-md border-b border-gx-border py-3 shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
-          : "bg-transparent border-b border-white/[0.04] py-5"
+          ? "bg-gx-obsidian/92 backdrop-blur-md border-b border-gx-border py-3 shadow-[0_10px_35px_rgba(0,0,0,0.6)]"
+          : "bg-transparent border-b border-gx-chalk/[0.05] py-5"
       }`}
     >
       <Container>
@@ -53,28 +53,28 @@ export function Navbar() {
           {/* Brand Logo */}
           <Link
             href="#top"
-            className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-gx-mint rounded-lg"
+            className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-gx-citron rounded-lg"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-gx-lime to-gx-emerald flex items-center justify-center text-[#08221a] shadow-[0_0_20px_rgba(72,214,162,0.35)] group-hover:scale-105 transition-transform">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-gx-vermilion to-gx-clay flex items-center justify-center text-gx-warmWhite shadow-[0_0_20px_rgba(198,91,61,0.35)] group-hover:scale-105 transition-transform">
               <Shield className="w-5 h-5 fill-current" />
             </div>
             <div>
-              <div className="flex items-center font-display font-extrabold text-xl tracking-tight text-gx-text">
-                guardian<span className="text-gx-mint">x</span>
+              <div className="flex items-center font-display font-extrabold text-xl tracking-tight text-gx-warmWhite">
+                GUARDIAN<span className="text-gx-vermilion">X</span>
               </div>
-              <div className="text-[9px] font-mono tracking-widest text-gx-muted uppercase font-medium leading-none">
-                Elderly Remote Safety
+              <div className="text-[9px] font-mono tracking-widest text-gx-mineral uppercase font-medium leading-none">
+                Independent Living Safety Intelligence
               </div>
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-7 text-xs font-medium text-gx-muted">
+          <nav className="hidden lg:flex items-center gap-7 text-xs font-medium text-gx-mineral">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="hover:text-gx-mint transition-colors tracking-wide py-1"
+                className="hover:text-gx-chalk transition-colors tracking-wide py-1"
               >
                 {link.name}
               </a>
@@ -95,7 +95,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg text-gx-muted hover:text-gx-text hover:bg-gx-panel/50 border border-gx-border focus:outline-none focus:ring-2 focus:ring-gx-mint"
+            className="lg:hidden p-2 rounded-lg text-gx-mineral hover:text-gx-warmWhite hover:bg-gx-carbon border border-gx-border focus:outline-none focus:ring-2 focus:ring-gx-citron"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileMenuOpen}
           >
@@ -112,21 +112,21 @@ export function Navbar() {
       {mobileMenuOpen && (
         <>
           <div
-            className="fixed inset-0 top-[61px] bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+            className="fixed inset-0 top-[61px] bg-black/75 backdrop-blur-sm z-40 lg:hidden"
             onClick={() => setMobileMenuOpen(false)}
             aria-hidden="true"
           />
-          <div className="relative z-50 lg:hidden bg-[#091714]/95 backdrop-blur-2xl border-b border-gx-border px-5 py-6 shadow-2xl animate-in slide-in-from-top-2 duration-200">
+          <div className="relative z-50 lg:hidden bg-gx-obsidian/95 backdrop-blur-2xl border-b border-gx-border px-5 py-6 shadow-2xl animate-in slide-in-from-top-2 duration-200">
             <nav className="flex flex-col gap-1 text-sm font-medium">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-gx-text hover:text-gx-mint active:bg-gx-panel/50 py-3 px-2 rounded-xl border-b border-gx-border/30 flex items-center justify-between transition-colors min-h-[44px]"
+                  className="text-gx-warmWhite hover:text-gx-citron active:bg-gx-carbon py-3 px-2 rounded-xl border-b border-gx-border/30 flex items-center justify-between transition-colors min-h-[44px]"
                 >
                   <span className="font-display font-medium tracking-wide">{link.name}</span>
-                  <span className="text-xs text-gx-mint/60 font-mono">→</span>
+                  <span className="text-xs text-gx-citron/80 font-mono">→</span>
                 </a>
               ))}
               <div className="pt-4 mt-2">

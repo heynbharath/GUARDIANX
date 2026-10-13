@@ -10,34 +10,34 @@ export interface StatusBadgeProps {
 export function StatusBadge({ status, label, className }: StatusBadgeProps) {
   const configs = {
     stable: {
-      text: label || "Stable",
-      dotClass: "bg-gx-emerald shadow-[0_0_10px_#48d6a2]",
-      badgeClass: "bg-emerald-950/40 text-gx-emerald border-emerald-500/20",
+      text: label || "Nominal",
+      dotClass: "bg-gx-citron shadow-[0_0_10px_rgba(212,228,90,0.5)]",
+      badgeClass: "bg-gx-carbon/80 text-gx-citron border-gx-citron/30",
     },
     active: {
       text: label || "Active",
-      dotClass: "bg-gx-mint shadow-[0_0_10px_#b8ffd9]",
-      badgeClass: "bg-teal-950/40 text-gx-mint border-teal-400/20",
+      dotClass: "bg-gx-chalk shadow-[0_0_10px_rgba(233,225,210,0.5)]",
+      badgeClass: "bg-gx-carbon/80 text-gx-chalk border-gx-chalk/30",
     },
     warning: {
       text: label || "Review Required",
-      dotClass: "bg-amber-400 shadow-[0_0_10px_#fbbf24]",
-      badgeClass: "bg-amber-950/40 text-amber-300 border-amber-500/30",
+      dotClass: "bg-gx-amber shadow-[0_0_10px_rgba(221,168,94,0.5)]",
+      badgeClass: "bg-gx-carbon/90 text-gx-amber border-gx-amber/40",
     },
     critical: {
       text: label || "Alert Triggered",
-      dotClass: "bg-gx-coral shadow-[0_0_10px_#ff9b87]",
-      badgeClass: "bg-rose-950/50 text-gx-coral border-rose-500/30",
+      dotClass: "bg-gx-vermilion shadow-[0_0_10px_rgba(198,91,61,0.6)]",
+      badgeClass: "bg-gx-carbon/90 text-gx-vermilion border-gx-vermilion/50",
     },
     offline: {
       text: label || "Device Offline",
-      dotClass: "bg-zinc-500",
-      badgeClass: "bg-zinc-900/60 text-zinc-400 border-zinc-700/40",
+      dotClass: "bg-gx-mineral",
+      badgeClass: "bg-gx-carbon/60 text-gx-mineral border-gx-graphite",
     },
     demo: {
-      text: label || "Simulated Demo",
-      dotClass: "bg-gx-lime shadow-[0_0_10px_#d7ff8f]",
-      badgeClass: "bg-lime-950/30 text-gx-lime border-lime-400/30",
+      text: label || "Simulated Prototype",
+      dotClass: "bg-gx-citron shadow-[0_0_10px_rgba(212,228,90,0.5)]",
+      badgeClass: "bg-gx-carbon/80 text-gx-citron border-gx-citron/30",
     },
   };
 

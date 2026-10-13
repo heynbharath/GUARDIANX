@@ -476,29 +476,29 @@ export function SafetyDashboard() {
         {/* Section Heading with Demo Banner */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.16em] text-gx-mint mb-3">
-              <span className="w-6 h-[1px] bg-gx-emerald/60" />
+            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.16em] text-gx-chalk mb-3">
+              <span className="w-6 h-[1px] bg-gx-vermilion" />
               <span>Section Four · The Response Experience</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold tracking-tight text-gx-text">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold tracking-tight text-gx-warmWhite">
               Coordinated Care Response{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gx-mint to-gx-emerald">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gx-chalk via-gx-vermilion to-gx-amber">
                 Console
               </span>
             </h2>
-            <p className="text-sm text-gx-muted max-w-xl mt-2">
+            <p className="text-sm text-gx-mineral max-w-xl mt-2">
               Transitioning from ambient room signals into an essential instrument for family understanding, ownership, and audited resolution.
             </p>
           </div>
 
           {/* Prominent Persistent Demo Mode Banner */}
-          <div className="px-4 py-2.5 rounded-2xl bg-[#122e23] border border-gx-lime/30 flex items-center gap-3 shrink-0 shadow-glow">
-            <span className="w-2.5 h-2.5 rounded-full bg-gx-lime animate-pulse" />
+          <div className="px-4 py-2.5 rounded-2xl bg-gx-carbon border border-gx-citron/40 flex items-center gap-3 shrink-0 shadow-citronGlow">
+            <span className="w-2.5 h-2.5 rounded-full bg-gx-citron animate-pulse" />
             <div className="text-left font-mono">
-              <div className="text-xs font-bold text-gx-lime uppercase tracking-wider">
-                DEMO MODE · SIMULATED DATA
+              <div className="text-xs font-bold text-gx-citron uppercase tracking-wider">
+                INTERACTIVE PROTOTYPE · SIMULATED DATA
               </div>
-              <div className="text-[10px] text-gx-muted">
+              <div className="text-[10px] text-gx-mineral">
                 Zero external dispatches or network calls
               </div>
             </div>
@@ -506,27 +506,27 @@ export function SafetyDashboard() {
         </div>
 
         {/* Dashboard Frame Shell */}
-        <div className="rounded-3xl bg-[#091713] border border-gx-border overflow-hidden shadow-panel">
+        <div className="rounded-3xl bg-gx-carbon border border-gx-border overflow-hidden shadow-panel">
           {/* Top Bar: Profile & Connection Meta */}
-          <div className="p-5 sm:p-6 border-b border-gx-border bg-[#0b1d18]/60 flex flex-wrap items-center justify-between gap-4">
+          <div className="p-5 sm:p-6 border-b border-gx-border bg-gx-carbon/80 flex flex-wrap items-center justify-between gap-4">
             {/* Elder Profile Information */}
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-gx-emerald/20 to-gx-mint/10 border border-gx-mint/30 flex items-center justify-center text-gx-mint font-display font-bold text-lg">
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-gx-vermilion/20 to-gx-clay/10 border border-gx-vermilion/30 flex items-center justify-center text-gx-warmWhite font-display font-bold text-lg">
                 AR
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="font-display font-bold text-lg text-gx-text">
+                  <h3 className="font-display font-bold text-lg text-gx-warmWhite">
                     {profile.name}
                   </h3>
-                  <span className="text-xs font-mono text-gx-muted">
+                  <span className="text-xs font-mono text-gx-mineral">
                     Age {profile.age} · {profile.city}
                   </span>
                 </div>
-                <div className="text-xs text-gx-muted flex items-center gap-2 mt-0.5">
+                <div className="text-xs text-gx-mineral flex items-center gap-2 mt-0.5">
                   <span>{profile.livingStatus}</span>
-                  <span className="text-gx-mint/60">•</span>
-                  <span className="font-mono text-[11px] text-gx-mint">
+                  <span className="text-gx-chalk/40">•</span>
+                  <span className="font-mono text-[11px] text-gx-chalk">
                     {profile.deviceModel}
                   </span>
                 </div>
@@ -545,18 +545,18 @@ export function SafetyDashboard() {
                 }
                 label={
                   telemetry.connectionState === "connected"
-                    ? "BLE Connected*"
+                    ? "Ambient BLE Active*"
                     : telemetry.connectionState === "stale"
                     ? "Data Stale"
                     : "Device Offline"
                 }
               />
-              <div className="px-3 py-1.5 rounded-xl bg-gx-panel/80 border border-gx-border flex items-center gap-2 text-xs font-mono text-gx-text">
-                <Battery className="w-4 h-4 text-gx-mint" />
+              <div className="px-3 py-1.5 rounded-xl bg-gx-obsidian border border-gx-border flex items-center gap-2 text-xs font-mono text-gx-warmWhite">
+                <Battery className="w-4 h-4 text-gx-amber" />
                 <span>{telemetry.batteryPercentage}%</span>
               </div>
-              <div className="px-3 py-1.5 rounded-xl bg-gx-panel/80 border border-gx-border flex items-center gap-2 text-xs font-mono text-gx-text">
-                <Radio className="w-4 h-4 text-gx-emerald" />
+              <div className="px-3 py-1.5 rounded-xl bg-gx-obsidian border border-gx-border flex items-center gap-2 text-xs font-mono text-gx-warmWhite">
+                <Radio className="w-4 h-4 text-gx-citron" />
                 <span className="uppercase text-[11px]">{telemetry.wornState}</span>
               </div>
             </div>
@@ -565,66 +565,66 @@ export function SafetyDashboard() {
           {/* Quick Metrics Bar */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-gx-border/40 border-b border-gx-border">
             {/* Metric 1: Safety Status */}
-            <div className="p-3.5 sm:p-5 bg-[#091713] text-left">
-              <div className="text-[10px] font-mono text-gx-muted uppercase tracking-wider truncate">
+            <div className="p-3.5 sm:p-5 bg-gx-carbon text-left">
+              <div className="text-[10px] font-mono text-gx-mineral uppercase tracking-wider truncate">
                 Overall Safety Status
               </div>
-              <div className="text-lg sm:text-2xl font-display font-bold mt-1 text-gx-text flex items-center gap-1.5 sm:gap-2">
+              <div className="text-lg sm:text-2xl font-display font-bold mt-1 text-gx-warmWhite flex items-center gap-1.5 sm:gap-2">
                 {activeAlert ? (
-                  <span className="text-gx-coral flex items-center gap-1.5 text-base sm:text-2xl">
+                  <span className="text-gx-vermilion flex items-center gap-1.5 text-base sm:text-2xl">
                     <AlertTriangle className="w-4 sm:w-5 h-4 sm:h-5 shrink-0" />
                     Review Needed
                   </span>
                 ) : (
-                  <span className="text-gx-emerald flex items-center gap-1.5 text-base sm:text-2xl">
+                  <span className="text-gx-citron flex items-center gap-1.5 text-base sm:text-2xl">
                     <CheckCircle2 className="w-4 sm:w-5 h-4 sm:h-5 shrink-0" />
-                    Stable & Safe
+                    Nominal & Safe
                   </span>
                 )}
               </div>
-              <div className="text-[10px] sm:text-[11px] text-gx-muted mt-0.5 sm:mt-1 truncate">
+              <div className="text-[10px] sm:text-[11px] text-gx-mineral mt-0.5 sm:mt-1 truncate">
                 {activeAlert ? "Active candidate alert" : "Routine patterns nominal"}
               </div>
             </div>
 
             {/* Metric 2: Today's Movement */}
-            <div className="p-3.5 sm:p-5 bg-[#091713] text-left">
-              <div className="text-[10px] font-mono text-gx-muted uppercase tracking-wider truncate">
+            <div className="p-3.5 sm:p-5 bg-gx-carbon text-left">
+              <div className="text-[10px] font-mono text-gx-mineral uppercase tracking-wider truncate">
                 Today&apos;s Step Cadence
               </div>
-              <div className="text-lg sm:text-2xl font-display font-bold mt-1 text-gx-text">
+              <div className="text-lg sm:text-2xl font-display font-bold mt-1 text-gx-warmWhite">
                 {telemetry.stepCount.toLocaleString()}{" "}
-                <span className="text-xs font-mono text-gx-muted font-normal">steps</span>
+                <span className="text-xs font-mono text-gx-mineral font-normal">steps</span>
               </div>
-              <div className="text-[10px] sm:text-[11px] text-gx-emerald mt-0.5 sm:mt-1 truncate">
-                Active morning walk logged
+              <div className="text-[10px] sm:text-[11px] text-gx-citron mt-0.5 sm:mt-1 truncate">
+                Active morning rhythm logged
               </div>
             </div>
 
             {/* Metric 3: Current Heart Rate */}
-            <div className="p-3.5 sm:p-5 bg-[#091713] text-left">
-              <div className="text-[10px] font-mono text-gx-muted uppercase tracking-wider truncate">
+            <div className="p-3.5 sm:p-5 bg-gx-carbon text-left">
+              <div className="text-[10px] font-mono text-gx-mineral uppercase tracking-wider truncate">
                 Heart Rhythm Telemetry
               </div>
-              <div className="text-lg sm:text-2xl font-display font-bold mt-1 text-gx-text flex items-center gap-1.5 sm:gap-2">
-                <Heart className="w-4 sm:w-5 h-4 sm:h-5 text-gx-mint animate-pulse" />
+              <div className="text-lg sm:text-2xl font-display font-bold mt-1 text-gx-warmWhite flex items-center gap-1.5 sm:gap-2">
+                <Heart className="w-4 sm:w-5 h-4 sm:h-5 text-gx-vermilion animate-pulse" />
                 <span>{telemetry.heartRateBpm}</span>
-                <span className="text-xs font-mono text-gx-muted font-normal">BPM</span>
+                <span className="text-xs font-mono text-gx-mineral font-normal">BPM</span>
               </div>
-              <div className="text-[10px] sm:text-[11px] text-gx-muted mt-0.5 sm:mt-1 truncate">
+              <div className="text-[10px] sm:text-[11px] text-gx-mineral mt-0.5 sm:mt-1 truncate">
                 Resting sinus baseline
               </div>
             </div>
 
             {/* Metric 4: Open Alerts Queue */}
-            <div className="p-3.5 sm:p-5 bg-[#091713] text-left">
-              <div className="text-[10px] font-mono text-gx-muted uppercase tracking-wider truncate">
+            <div className="p-3.5 sm:p-5 bg-gx-carbon text-left">
+              <div className="text-[10px] font-mono text-gx-mineral uppercase tracking-wider truncate">
                 Care Circle Alerts
               </div>
-              <div className="text-lg sm:text-2xl font-display font-bold mt-1 text-gx-text">
+              <div className="text-lg sm:text-2xl font-display font-bold mt-1 text-gx-warmWhite">
                 {activeAlert ? "01 Active" : "00 Open"}
               </div>
-              <div className="text-[10px] sm:text-[11px] text-gx-muted mt-0.5 sm:mt-1 truncate">
+              <div className="text-[10px] sm:text-[11px] text-gx-mineral mt-0.5 sm:mt-1 truncate">
                 {activeAlert ? "Escalation in progress" : "Queue clear"}
               </div>
             </div>
@@ -633,13 +633,13 @@ export function SafetyDashboard() {
           {/* Main Dashboard Body */}
           <div className="p-4 sm:p-8 space-y-6">
             {/* Interactive Module Navigation Bar */}
-            <div className="flex flex-wrap gap-2 p-1.5 rounded-2xl bg-[#07130f] border border-gx-border">
+            <div className="flex flex-wrap gap-2 p-1.5 rounded-2xl bg-gx-obsidian border border-gx-border">
               <button
                 onClick={() => setDashboardTab("overview")}
                 className={`px-4 py-2 rounded-xl text-xs font-mono font-medium flex items-center gap-2 transition-all ${
                   dashboardTab === "overview"
-                    ? "bg-gx-emerald text-[#091713] font-bold shadow-sm"
-                    : "text-gx-muted hover:text-gx-text"
+                    ? "bg-gx-vermilion text-gx-warmWhite font-bold shadow-sm"
+                    : "text-gx-mineral hover:text-gx-warmWhite"
                 }`}
               >
                 <Activity className="w-4 h-4" /> Safety Triage & Rhythm
@@ -648,8 +648,8 @@ export function SafetyDashboard() {
                 onClick={() => setDashboardTab("meds")}
                 className={`px-4 py-2 rounded-xl text-xs font-mono font-medium flex items-center gap-2 transition-all ${
                   dashboardTab === "meds"
-                    ? "bg-gx-emerald text-[#091713] font-bold shadow-sm"
-                    : "text-gx-muted hover:text-gx-text"
+                    ? "bg-gx-vermilion text-gx-warmWhite font-bold shadow-sm"
+                    : "text-gx-mineral hover:text-gx-warmWhite"
                 }`}
               >
                 <Pill className="w-4 h-4" /> Medication & Appointments
@@ -658,8 +658,8 @@ export function SafetyDashboard() {
                 onClick={() => setDashboardTab("diet")}
                 className={`px-4 py-2 rounded-xl text-xs font-mono font-medium flex items-center gap-2 transition-all ${
                   dashboardTab === "diet"
-                    ? "bg-gx-emerald text-[#091713] font-bold shadow-sm"
-                    : "text-gx-muted hover:text-gx-text"
+                    ? "bg-gx-vermilion text-gx-warmWhite font-bold shadow-sm"
+                    : "text-gx-mineral hover:text-gx-warmWhite"
                 }`}
               >
                 <Apple className="w-4 h-4" /> Diet & Deficiencies
@@ -668,8 +668,8 @@ export function SafetyDashboard() {
                 onClick={() => setDashboardTab("voice_noise")}
                 className={`px-4 py-2 rounded-xl text-xs font-mono font-medium flex items-center gap-2 transition-all ${
                   dashboardTab === "voice_noise"
-                    ? "bg-purple-400 text-[#091713] font-bold shadow-sm"
-                    : "text-gx-muted hover:text-gx-text"
+                    ? "bg-gx-citron text-gx-obsidian font-bold shadow-sm"
+                    : "text-gx-mineral hover:text-gx-warmWhite"
                 }`}
               >
                 <Mic className="w-4 h-4" /> Voice Assistant & Noise
@@ -678,8 +678,8 @@ export function SafetyDashboard() {
                 onClick={() => setDashboardTab("emergency")}
                 className={`px-4 py-2 rounded-xl text-xs font-mono font-medium flex items-center gap-2 transition-all ${
                   dashboardTab === "emergency"
-                    ? "bg-rose-400 text-[#091713] font-bold shadow-sm"
-                    : "text-gx-muted hover:text-gx-text"
+                    ? "bg-gx-clay text-gx-warmWhite font-bold shadow-sm"
+                    : "text-gx-mineral hover:text-gx-warmWhite"
                 }`}
               >
                 <PhoneCall className="w-4 h-4" /> Emergency Calling (4-Tier)
@@ -688,8 +688,8 @@ export function SafetyDashboard() {
                 onClick={() => setDashboardTab("cctv")}
                 className={`px-4 py-2 rounded-xl text-xs font-mono font-medium flex items-center gap-2 transition-all ${
                   dashboardTab === "cctv"
-                    ? "bg-cyan-400 text-[#091713] font-bold shadow-sm"
-                    : "text-gx-muted hover:text-gx-text"
+                    ? "bg-gx-chalk text-gx-obsidian font-bold shadow-sm"
+                    : "text-gx-mineral hover:text-gx-warmWhite"
                 }`}
               >
                 <Video className="w-4 h-4" /> CCTV Camera Safety

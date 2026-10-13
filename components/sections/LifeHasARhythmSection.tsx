@@ -114,16 +114,16 @@ export function LifeHasARhythmSection() {
                 }`}
               >
                 <div className="flex items-center justify-between text-xs font-mono mb-2">
-                  <span className={`${isSelected ? "text-gx-mint font-bold" : "text-gx-muted"}`}>
+                  <span className={`${isSelected ? "text-gx-citron font-bold" : "text-gx-mineral"}`}>
                     {m.time}
                   </span>
                   <span
-                    className={`text-[9px] uppercase px-1.5 py-0.5 rounded ${
+                    className={`text-[9px] uppercase px-1.5 py-0.5 rounded font-mono ${
                       m.status === "triage"
-                        ? "bg-rose-500/20 text-rose-300"
+                        ? "bg-gx-carbon text-gx-vermilion border border-gx-vermilion/40"
                         : m.status === "uncertainty"
-                        ? "bg-amber-500/20 text-amber-300"
-                        : "bg-emerald-500/20 text-emerald-300"
+                        ? "bg-gx-carbon text-gx-amber border border-gx-amber/40"
+                        : "bg-gx-carbon text-gx-citron border border-gx-citron/30"
                     }`}
                   >
                     {m.status}
@@ -132,12 +132,12 @@ export function LifeHasARhythmSection() {
                 <div className="flex items-center gap-2">
                   <Icon
                     className={`w-4 h-4 shrink-0 ${
-                      isSelected ? "text-gx-mint" : "text-gx-muted"
+                      isSelected ? "text-gx-citron" : "text-gx-mineral"
                     }`}
                   />
                   <span
                     className={`font-display font-semibold text-xs truncate ${
-                      isSelected ? "text-gx-text" : "text-gx-muted"
+                      isSelected ? "text-gx-warmWhite" : "text-gx-mineral"
                     }`}
                   >
                     {m.title}
@@ -151,32 +151,32 @@ export function LifeHasARhythmSection() {
         {/* Context Deep-Dive Comparison Display */}
         <div className="mt-8 grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
           {/* Left Column: What GuardianX Observes (5 cols) */}
-          <div className="md:col-span-5 p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-[#0c221b] to-[#081512] border border-gx-border flex flex-col justify-between text-left">
+          <div className="md:col-span-5 p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-gx-carbon to-gx-obsidian border border-gx-border flex flex-col justify-between text-left">
             <div>
               <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-gx-mint">{currentMoment.period}</span>
-                <span className="text-gx-muted">{currentMoment.time}</span>
+                <span className="text-gx-citron">{currentMoment.period}</span>
+                <span className="text-gx-mineral">{currentMoment.time}</span>
               </div>
 
-              <h4 className="font-display font-bold text-xl text-gx-text mt-3">
+              <h4 className="font-display font-bold text-xl text-gx-warmWhite mt-3">
                 {currentMoment.title}
               </h4>
 
               <div className="mt-6 space-y-4">
-                <div className="p-4 rounded-xl bg-black/40 border border-gx-border/60">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-gx-mint block mb-1">
+                <div className="p-4 rounded-xl bg-gx-obsidian/70 border border-gx-border/60">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-gx-chalk block mb-1">
                     1. Observed Signal Telemetry
                   </span>
-                  <p className="text-xs text-gx-text leading-relaxed">
+                  <p className="text-xs text-gx-warmWhite leading-relaxed">
                     {currentMoment.observedSignal}
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-black/40 border border-gx-border/60">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-amber-300 block mb-1">
+                <div className="p-4 rounded-xl bg-gx-obsidian/70 border border-gx-border/60">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-gx-amber block mb-1">
                     2. What The Signal Cannot Prove
                   </span>
-                  <p className="text-xs text-gx-muted leading-relaxed">
+                  <p className="text-xs text-gx-mineral leading-relaxed">
                     A raw sensor cannot distinguish between peaceful resting, a forgotten task, or a serious stumble without contextual priors.
                   </p>
                 </div>
@@ -189,38 +189,38 @@ export function LifeHasARhythmSection() {
           </div>
 
           {/* Right Column: Context & Recommended Next Step (7 cols) */}
-          <div className="md:col-span-7 p-6 sm:p-8 rounded-3xl bg-[#091814] border border-gx-border flex flex-col justify-between text-left space-y-6">
+          <div className="md:col-span-7 p-6 sm:p-8 rounded-3xl bg-gx-carbon border border-gx-border flex flex-col justify-between text-left space-y-6">
             <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-gx-emerald block mb-2">
-                Why Additional Context Changes Everything
+              <span className="text-xs font-mono uppercase tracking-widest text-gx-vermilion block mb-2 font-semibold">
+                Why Contextual Awareness Changes Everything
               </span>
 
-              <h4 className="font-display font-extrabold text-2xl text-gx-text">
+              <h4 className="font-display font-extrabold text-2xl text-gx-warmWhite">
                 Context-Aware Triage Engine
               </h4>
-              <p className="text-sm text-gx-muted mt-2 leading-relaxed">
+              <p className="text-sm text-gx-mineral mt-2 leading-relaxed">
                 {currentMoment.contextSignificance}
               </p>
             </div>
 
             {/* Step Action Box */}
-            <div className="p-5 rounded-2xl bg-[#0c261e]/80 border border-gx-mint/30 space-y-2">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-gx-mint flex items-center gap-1.5 font-bold">
+            <div className="p-5 rounded-2xl bg-gx-obsidian border border-gx-citron/30 space-y-2">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-gx-citron flex items-center gap-1.5 font-bold">
                 <Sparkles className="w-3.5 h-3.5" /> Proposed GuardianX Response Protocol
               </span>
-              <p className="text-sm font-display font-medium text-gx-text leading-snug">
+              <p className="text-sm font-display font-medium text-gx-warmWhite leading-snug">
                 {currentMoment.reasonableNextStep}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono text-gx-muted pt-2 border-t border-gx-border/40">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono text-gx-mineral pt-2 border-t border-gx-border/40">
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-gx-emerald" />
-                <span>Zero premature 911 / EMS alarms</span>
+                <CheckCircle2 className="w-4 h-4 text-gx-citron" />
+                <span>Zero premature emergency dispatch</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-gx-emerald" />
-                <span>Non-invasive check-in grace period</span>
+                <CheckCircle2 className="w-4 h-4 text-gx-citron" />
+                <span>Local check-in grace period honored</span>
               </div>
             </div>
           </div>
