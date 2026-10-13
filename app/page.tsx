@@ -2,6 +2,7 @@ import { CinematicHero } from "@/components/sections/CinematicHero";
 import { HumanTruthSection } from "@/components/sections/HumanTruthSection";
 import { LifeHasARhythmSection } from "@/components/sections/LifeHasARhythmSection";
 import { LivingGuardianExperienceSection } from "@/components/sections/LivingGuardianExperienceSection";
+import { GuidedEventStorySection } from "@/components/sections/GuidedEventStorySection";
 import { SafetyDashboard } from "@/components/dashboard/SafetyDashboard";
 import { SystemArchitectureFlowSection } from "@/components/sections/SystemArchitectureFlowSection";
 import { EthicalPrinciplesSection } from "@/components/sections/EthicalPrinciplesSection";
@@ -26,7 +27,10 @@ export default function Home() {
       {/* 04. Section Three: The Living Guardian Experience (Spatial Room Cutaway & Scenario Injection) */}
       <LivingGuardianExperienceSection />
 
-      {/* 05. Section Four: The Response Experience (Care Coordination & Triage Console) */}
+      {/* 05. Guided Event Story: From Signal to Response (Section 08 State Machine Workflow) */}
+      <GuidedEventStorySection />
+
+      {/* 06. Section Four: The Response Experience (Care Coordination & Triage Console) */}
       <SafetyDashboard />
 
       {/* 06. Section Five: System Designed Around People (6-Layer Architecture Flow) */}
