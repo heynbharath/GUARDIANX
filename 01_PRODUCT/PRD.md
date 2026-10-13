@@ -35,23 +35,20 @@ This is a hypothesis to validate with users, not a proven clinical outcome.
 7. Family clarity over notification volume.
 8. Safety integrations must be validated and explicitly configured.
 
-## 7. MVP scope — software prototype
-- Premium responsive landing page.
-- Demo dashboard with fictitious person and simulated device status.
-- Device status: connected, stale, disconnected, low battery, unknown.
-- Sample activity timeline and event list.
-- Simulated fall event and unusual inactivity event.
-- Alert details: severity, confidence (if simulated), source, timestamp, status, suggested next step.
-- Simulated check-in and sequential trusted-contact escalation.
-- Acknowledge, resolve, mark false positive, and add outcome note.
-- Contact management UI using fake data.
-- Configurable demo thresholds and grace period.
-- Event history and filters.
-- Faculty page explaining architecture, stage, limitations, and roadmap.
-- Responsive design and accessibility basics.
-- Automated unit tests for state transitions.
+## 7. Extended Prototype Scope (Incorporating Project Notes)
+- Premium responsive landing page & design system with dynamic micro-interactions.
+- Demo dashboard with fictitious person (`Ananya Rao`) and simulated wearable pulse band.
+- Multi-tier Safety Triage & Rhythm: fall detection, prolonged inactivity, and BLE keep-alive state machine.
+- **Medication & Appointment Manager:** Daily dose schedule, adherence tracking (% completed), mark taken/unread, and clinic consultation reminders.
+- **Dietary Guidance & Health Deficiencies:** Clinical lab biomarker correlation (Vitamin D, Iron, Electrolytes), deficiency alerts, and curated meal plans / food avoidance recommendations.
+- **Wearable Voice Assistant & Noise Detection:** Hands-free speech interaction feed (Alexa-style band microphone) and acoustic anomaly classifier (loud crashes, appliance alarms, glass breaks).
+- **4-Tier Emergency Calling System:** One-touch rapid connection for Family, Home Help, Ambulance, and Neighbours with simulated response ETAs.
+- **CCTV Integration & Privacy Shield:** Remote visual verification with elder consent controls and immutable access audit logging.
+- **Value Proposition & Business Case:** Strategic rationale on why families and seniors buy GuardianX.
+- Sequential caregiver escalation, false alarm verification, and resolution documentation.
+- Automated unit tests for all state transitions and invariants.
 
-## 8. Out of scope for first faculty prototype
+## 8. Out of scope for current concept prototype
 - Actual wearable hardware integration.
 - Validated fall detection or clinical risk models.
 - Real health monitoring, diagnosis, or medical advice.

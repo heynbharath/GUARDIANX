@@ -10,12 +10,25 @@ import { ActivityChart } from "@/components/dashboard/ActivityChart";
 import { GuardianPanel } from "@/components/dashboard/GuardianPanel";
 import { DemoControls } from "@/components/dashboard/DemoControls";
 import { OutcomeModal } from "@/components/dashboard/OutcomeModal";
+import { MedicationAppointmentTracker } from "@/components/dashboard/MedicationAppointmentTracker";
+import { DietAndWellnessPanel } from "@/components/dashboard/DietAndWellnessPanel";
+import { WearableAssistantAndAudioPanel } from "@/components/dashboard/WearableAssistantAndAudioPanel";
+import { EmergencyCallingHub } from "@/components/dashboard/EmergencyCallingHub";
+import { CCTVIntegrationPanel } from "@/components/dashboard/CCTVIntegrationPanel";
 import {
   INITIAL_ELDER_PROFILE,
   INITIAL_DEVICE_TELEMETRY,
   INITIAL_GUARDIAN_CONTACTS,
   INITIAL_ACTIVITY_TRENDS,
   INITIAL_AUDIT_LOGS,
+  INITIAL_MEDICATIONS,
+  INITIAL_APPOINTMENTS,
+  INITIAL_DEFICIENCIES,
+  INITIAL_DIET_RECOMMENDATIONS,
+  INITIAL_ACOUSTIC_EVENTS,
+  INITIAL_VOICE_QUERIES,
+  INITIAL_CCTV_FEEDS,
+  INITIAL_TIERED_EMERGENCY_CONTACTS,
   createSimulatedFallAlert,
   createSimulatedInactivityAlert,
 } from "@/lib/demo-data";
@@ -25,6 +38,14 @@ import {
   GuardianContact,
   AuditEvent,
   AlertState,
+  MedicationItem,
+  AppointmentItem,
+  HealthReportDeficiency,
+  DietaryRecommendation,
+  AcousticEvent,
+  VoiceAssistantQuery,
+  CCTVCameraFeed,
+  EmergencyContact,
 } from "@/types/guardianx";
 import { transitionAlert, canTransition } from "@/lib/alert-state-machine";
 import {
@@ -38,6 +59,11 @@ import {
   Sparkles,
   CheckCircle2,
   AlertTriangle,
+  Pill,
+  Apple,
+  Mic,
+  PhoneCall,
+  Video,
 } from "lucide-react";
 
 export function SafetyDashboard() {
@@ -50,6 +76,17 @@ export function SafetyDashboard() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [isLiveTelemetry, setIsLiveTelemetry] = useState(false);
   const [gracePeriod, setGracePeriod] = useState<number | null>(null);
+
+  // New states for parsed notes features
+  const [dashboardTab, setDashboardTab] = useState<"overview" | "meds" | "diet" | "voice_noise" | "emergency" | "cctv">("overview");
+  const [medications, setMedications] = useState<MedicationItem[]>(INITIAL_MEDICATIONS);
+  const [appointments, setAppointments] = useState<AppointmentItem[]>(INITIAL_APPOINTMENTS);
+  const [deficiencies] = useState<HealthReportDeficiency[]>(INITIAL_DEFICIENCIES);
+  const [recommendations] = useState<DietaryRecommendation[]>(INITIAL_DIET_RECOMMENDATIONS);
+  const [acousticEvents, setAcousticEvents] = useState<AcousticEvent[]>(INITIAL_ACOUSTIC_EVENTS);
+  const [voiceQueries, setVoiceQueries] = useState<VoiceAssistantQuery[]>(INITIAL_VOICE_QUERIES);
+  const [cctvFeeds, setCctvFeeds] = useState<CCTVCameraFeed[]>(INITIAL_CCTV_FEEDS);
+  const [emergencyContacts] = useState<EmergencyContact[]>(INITIAL_TIERED_EMERGENCY_CONTACTS);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -334,6 +371,95 @@ export function SafetyDashboard() {
     }
   };
 
+  // Handlers for New Modules
+  const handleToggleMedication = (medId: string) => {
+    setMedications((prev) =>
+      prev.map((m) => {
+        if (m.id !== medId) return m;
+        const willBeTaken = m.status !== "taken";
+        return {
+          ...m,
+          status: willBeTaken ? "taken" : "pending",
+          takenAt: willBeTaken ? new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : undefined,
+        };
+      })
+    );
+    showToast("Medication status updated & synced with family caregiver.");
+  };
+
+  const handleRequestReminder = (item: string) => {
+    showToast(`Wristband audio chime sent to Ananya: Reminder for "${item}"`);
+  };
+
+  const handleSimulateVoiceCommand = (phrase: string) => {
+    const newLog: VoiceAssistantQuery = {
+      id: `vox_${Date.now()}`,
+      timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+      userSpokenText: phrase,
+      assistantResponse: phrase.toLowerCase().includes("dizzy") || phrase.toLowerCase().includes("help")
+        ? "Alerting Kavita Rao immediately via GuardianX priority dispatch. Please remain seated."
+        : `Acknowledged: "${phrase}". Processing request on GuardianX secure assistant service.`,
+      intent: phrase.toLowerCase().includes("help") ? "call_help" : "wellness_chat",
+      deviceStatus: "processed",
+    };
+    setVoiceQueries((prev) => [newLog, ...prev]);
+    showToast(`Wearer spoke to band: "${phrase}"`);
+  };
+
+  const handleSimulateAcousticAnomaly = () => {
+    const newAcoustic: AcousticEvent = {
+      id: `snd_${Date.now()}`,
+      timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+      decibelLevel: 88,
+      soundType: "loud_crash",
+      confidenceScore: 0.94,
+      flaggedForTriage: true,
+    };
+    setAcousticEvents((prev) => [newAcoustic, ...prev]);
+    showToast("⚠️ Acoustic Sentinel: Loud crash sound (88 dB) detected in apartment!");
+  };
+
+  const handleEmergencyCall = (contact: EmergencyContact) => {
+    const callAudit: AuditEvent = {
+      id: `audit_call_${Date.now()}`,
+      alertId: activeAlert?.id || "manual_emergency_dial",
+      timestamp: new Date().toISOString(),
+      actor: { type: "wearer", id: profile.id, name: profile.name },
+      previousState: activeAlert?.state || "detected",
+      nextState: activeAlert ? "escalating" : "detected",
+      reason: `Direct Emergency Call to ${contact.tierLabel}: ${contact.name}`,
+      note: `Connected call to ${contact.phone} (Est. ETA ${contact.etaEstimateMinutes || 5}m)`,
+      correlationId: `call_${Date.now()}`,
+    };
+    setAuditLogs((prev) => [callAudit, ...prev]);
+    showToast(`Emergency Dial: Connecting to ${contact.name} (${contact.phone})...`);
+  };
+
+  const handleToggleCCTVConsent = (camId: string) => {
+    setCctvFeeds((prev) =>
+      prev.map((c) =>
+        c.id === camId ? { ...c, consentGranted: !c.consentGranted } : c
+      )
+    );
+    showToast("Elder CCTV privacy preference updated.");
+  };
+
+  const handleAuditCCTVAccess = (room: string) => {
+    const videoAudit: AuditEvent = {
+      id: `audit_cam_${Date.now()}`,
+      alertId: activeAlert?.id || "routine_visual_check",
+      timestamp: new Date().toISOString(),
+      actor: { type: "caregiver", id: "guardian_kavita", name: "Kavita Rao" },
+      previousState: activeAlert?.state || "acknowledged",
+      nextState: activeAlert?.state || "acknowledged",
+      reason: `Caregiver visual check requested: ${room}`,
+      note: "Encrypted snapshot verified by family member. Privacy consent honored.",
+      correlationId: `cam_${Date.now()}`,
+    };
+    setAuditLogs((prev) => [videoAudit, ...prev]);
+    showToast(`Snapshot verified for ${room}. Logged in audit trail.`);
+  };
+
   // 8. Reset Demo
   const handleResetDemo = () => {
     setActiveAlert(null);
@@ -503,59 +629,167 @@ export function SafetyDashboard() {
 
           {/* Main Dashboard Body */}
           <div className="p-4 sm:p-8 space-y-6">
-            {/* Active Alert Panel */}
-            <AlertPanel
-              alert={activeAlert}
-              onAcknowledge={handleAcknowledge}
-              onEscalate={handleEscalate}
-              onOpenResolveModal={() => setIsResolveModalOpen(true)}
-              onMarkFalsePositive={handleMarkFalseAlarm}
-              onWearerCheckIn={handleSimulateCheckIn}
-              gracePeriodSeconds={gracePeriod ?? undefined}
-            />
+            {/* Interactive Module Navigation Bar */}
+            <div className="flex flex-wrap gap-2 p-1.5 rounded-2xl bg-[#07130f] border border-gx-border">
+              <button
+                onClick={() => setDashboardTab("overview")}
+                className={`px-4 py-2 rounded-xl text-xs font-mono font-medium flex items-center gap-2 transition-all ${
+                  dashboardTab === "overview"
+                    ? "bg-gx-emerald text-[#091713] font-bold shadow-sm"
+                    : "text-gx-muted hover:text-gx-text"
+                }`}
+              >
+                <Activity className="w-4 h-4" /> Safety Triage & Rhythm
+              </button>
+              <button
+                onClick={() => setDashboardTab("meds")}
+                className={`px-4 py-2 rounded-xl text-xs font-mono font-medium flex items-center gap-2 transition-all ${
+                  dashboardTab === "meds"
+                    ? "bg-gx-emerald text-[#091713] font-bold shadow-sm"
+                    : "text-gx-muted hover:text-gx-text"
+                }`}
+              >
+                <Pill className="w-4 h-4" /> Medication & Appointments
+              </button>
+              <button
+                onClick={() => setDashboardTab("diet")}
+                className={`px-4 py-2 rounded-xl text-xs font-mono font-medium flex items-center gap-2 transition-all ${
+                  dashboardTab === "diet"
+                    ? "bg-gx-emerald text-[#091713] font-bold shadow-sm"
+                    : "text-gx-muted hover:text-gx-text"
+                }`}
+              >
+                <Apple className="w-4 h-4" /> Diet & Deficiencies
+              </button>
+              <button
+                onClick={() => setDashboardTab("voice_noise")}
+                className={`px-4 py-2 rounded-xl text-xs font-mono font-medium flex items-center gap-2 transition-all ${
+                  dashboardTab === "voice_noise"
+                    ? "bg-purple-400 text-[#091713] font-bold shadow-sm"
+                    : "text-gx-muted hover:text-gx-text"
+                }`}
+              >
+                <Mic className="w-4 h-4" /> Voice Assistant & Noise
+              </button>
+              <button
+                onClick={() => setDashboardTab("emergency")}
+                className={`px-4 py-2 rounded-xl text-xs font-mono font-medium flex items-center gap-2 transition-all ${
+                  dashboardTab === "emergency"
+                    ? "bg-rose-400 text-[#091713] font-bold shadow-sm"
+                    : "text-gx-muted hover:text-gx-text"
+                }`}
+              >
+                <PhoneCall className="w-4 h-4" /> Emergency Calling (4-Tier)
+              </button>
+              <button
+                onClick={() => setDashboardTab("cctv")}
+                className={`px-4 py-2 rounded-xl text-xs font-mono font-medium flex items-center gap-2 transition-all ${
+                  dashboardTab === "cctv"
+                    ? "bg-cyan-400 text-[#091713] font-bold shadow-sm"
+                    : "text-gx-muted hover:text-gx-text"
+                }`}
+              >
+                <Video className="w-4 h-4" /> CCTV Camera Safety
+              </button>
+            </div>
 
-            {/* Working Scenario Simulator Controls */}
-            <DemoControls
-              onSimulateFall={handleSimulateFall}
-              onSimulateInactivity={handleSimulateInactivity}
-              onSimulateOffline={handleToggleOffline}
-              onSimulateCheckIn={handleSimulateCheckIn}
-              onAcknowledge={handleAcknowledge}
-              onEscalate={handleEscalate}
-              onOpenResolveModal={() => setIsResolveModalOpen(true)}
-              onResetDemo={handleResetDemo}
-              hasActiveAlert={!!activeAlert}
-              canEscalate={!!activeAlert && activeAlert.escalationLevel < 2}
-              canAcknowledge={!!activeAlert && activeAlert.state !== "acknowledged"}
-              isOffline={telemetry.connectionState === "offline"}
-              isLiveTelemetry={isLiveTelemetry}
-              onToggleLiveTelemetry={() => setIsLiveTelemetry(!isLiveTelemetry)}
-            />
-
-            {/* Two-Column Middle Section: Rhythm Chart & Contacts */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-              {/* Left Column: Activity Chart & Telemetry (7 cols) */}
-              <div className="lg:col-span-7 p-6 rounded-2xl bg-gx-panel/30 border border-gx-border/60">
-                <ActivityChart data={INITIAL_ACTIVITY_TRENDS} />
-                <div className="mt-4 pt-3 border-t border-white/[0.04] text-[11px] font-mono text-gx-muted flex items-center justify-between">
-                  <span>Wearable: Nordic nRF5340 IMU Profile</span>
-                  <span className="text-gx-mint">Sample Telemetry Feed</span>
-                </div>
-              </div>
-
-              {/* Right Column: Care Circle Contacts (5 cols) */}
-              <div className="lg:col-span-5 p-6 rounded-2xl bg-gx-panel/30 border border-gx-border/60">
-                <GuardianPanel
-                  contacts={contacts}
-                  currentEscalationLevel={activeAlert?.escalationLevel ?? 0}
+            {dashboardTab === "overview" && (
+              <>
+                {/* Active Alert Panel */}
+                <AlertPanel
+                  alert={activeAlert}
+                  onAcknowledge={handleAcknowledge}
+                  onEscalate={handleEscalate}
+                  onOpenResolveModal={() => setIsResolveModalOpen(true)}
+                  onMarkFalsePositive={handleMarkFalseAlarm}
+                  onWearerCheckIn={handleSimulateCheckIn}
+                  gracePeriodSeconds={gracePeriod ?? undefined}
                 />
-              </div>
-            </div>
 
-            {/* Event Audit History Timeline */}
-            <div className="p-6 rounded-2xl bg-gx-panel/20 border border-gx-border/60">
-              <ActivityTimeline auditLogs={auditLogs} />
-            </div>
+                {/* Working Scenario Simulator Controls */}
+                <DemoControls
+                  onSimulateFall={handleSimulateFall}
+                  onSimulateInactivity={handleSimulateInactivity}
+                  onSimulateOffline={handleToggleOffline}
+                  onSimulateCheckIn={handleSimulateCheckIn}
+                  onAcknowledge={handleAcknowledge}
+                  onEscalate={handleEscalate}
+                  onOpenResolveModal={() => setIsResolveModalOpen(true)}
+                  onResetDemo={handleResetDemo}
+                  hasActiveAlert={!!activeAlert}
+                  canEscalate={!!activeAlert && activeAlert.escalationLevel < 2}
+                  canAcknowledge={!!activeAlert && activeAlert.state !== "acknowledged"}
+                  isOffline={telemetry.connectionState === "offline"}
+                  isLiveTelemetry={isLiveTelemetry}
+                  onToggleLiveTelemetry={() => setIsLiveTelemetry(!isLiveTelemetry)}
+                />
+
+                {/* Two-Column Middle Section: Rhythm Chart & Contacts */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                  {/* Left Column: Activity Chart & Telemetry (7 cols) */}
+                  <div className="lg:col-span-7 p-6 rounded-2xl bg-gx-panel/30 border border-gx-border/60">
+                    <ActivityChart data={INITIAL_ACTIVITY_TRENDS} />
+                    <div className="mt-4 pt-3 border-t border-white/[0.04] text-[11px] font-mono text-gx-muted flex items-center justify-between">
+                      <span>Wearable: Nordic nRF5340 IMU Profile</span>
+                      <span className="text-gx-mint">Sample Telemetry Feed</span>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Care Circle Contacts (5 cols) */}
+                  <div className="lg:col-span-5 p-6 rounded-2xl bg-gx-panel/30 border border-gx-border/60">
+                    <GuardianPanel
+                      contacts={contacts}
+                      currentEscalationLevel={activeAlert?.escalationLevel ?? 0}
+                    />
+                  </div>
+                </div>
+
+                {/* Event Audit History Timeline */}
+                <div className="p-6 rounded-2xl bg-gx-panel/20 border border-gx-border/60">
+                  <ActivityTimeline auditLogs={auditLogs} />
+                </div>
+              </>
+            )}
+
+            {dashboardTab === "meds" && (
+              <MedicationAppointmentTracker
+                medications={medications}
+                appointments={appointments}
+                onToggleMedicationStatus={handleToggleMedication}
+                onRequestReminder={handleRequestReminder}
+              />
+            )}
+
+            {dashboardTab === "diet" && (
+              <DietAndWellnessPanel
+                deficiencies={deficiencies}
+                recommendations={recommendations}
+              />
+            )}
+
+            {dashboardTab === "voice_noise" && (
+              <WearableAssistantAndAudioPanel
+                acousticEvents={acousticEvents}
+                voiceQueries={voiceQueries}
+                onSimulateVoiceCommand={handleSimulateVoiceCommand}
+                onSimulateAcousticAnomaly={handleSimulateAcousticAnomaly}
+              />
+            )}
+
+            {dashboardTab === "emergency" && (
+              <EmergencyCallingHub
+                contacts={emergencyContacts}
+                onTriggerEmergencyCall={handleEmergencyCall}
+              />
+            )}
+
+            {dashboardTab === "cctv" && (
+              <CCTVIntegrationPanel
+                cameras={cctvFeeds}
+                onToggleConsent={handleToggleCCTVConsent}
+                onAuditAccessLog={handleAuditCCTVAccess}
+              />
+            )}
           </div>
         </div>
 

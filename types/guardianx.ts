@@ -92,6 +92,89 @@ export interface ActivityHourSample {
   status: 'active' | 'rest' | 'inactivity_window' | 'nominal';
 }
 
+// ----------------------------------------------------
+// New Extended Modules (From Project Notes)
+// ----------------------------------------------------
+
+export interface MedicationItem {
+  id: string;
+  name: string;
+  dosage: string;
+  scheduledTime: string;
+  status: 'taken' | 'pending' | 'overdue';
+  takenAt?: string;
+  instructions: string;
+}
+
+export interface AppointmentItem {
+  id: string;
+  title: string;
+  doctor: string;
+  specialty: string;
+  dateTime: string;
+  location: string;
+  status: 'upcoming' | 'completed' | 'cancelled';
+}
+
+export interface DietaryRecommendation {
+  id: string;
+  category: 'breakfast' | 'lunch' | 'dinner' | 'snack' | 'hydration';
+  title: string;
+  benefit: string;
+  targetNutrient: string;
+  recommendedFoods: string[];
+  foodsToAvoid: string[];
+}
+
+export interface HealthReportDeficiency {
+  id: string;
+  biomarker: string;
+  status: 'deficient' | 'low' | 'optimal' | 'elevated';
+  measuredValue: string;
+  normalRange: string;
+  impactSummary: string;
+  dietaryAction: string;
+}
+
+export interface AcousticEvent {
+  id: string;
+  timestamp: string;
+  decibelLevel: number;
+  soundType: 'normal_ambient' | 'loud_crash' | 'glass_break' | 'distress_shout' | 'appliance_alarm';
+  confidenceScore: number;
+  flaggedForTriage: boolean;
+}
+
+export interface VoiceAssistantQuery {
+  id: string;
+  timestamp: string;
+  userSpokenText: string;
+  assistantResponse: string;
+  intent: 'call_help' | 'medication_query' | 'time_query' | 'wellness_chat' | 'home_help';
+  deviceStatus: 'processed' | 'active_listening';
+}
+
+export interface CCTVCameraFeed {
+  id: string;
+  roomName: string;
+  status: 'live' | 'standby' | 'privacy_masked';
+  consentGranted: boolean;
+  lastSnapshotAt: string;
+  streamUrlPlaceholder: string;
+}
+
+export interface EmergencyContact {
+  id: string;
+  tier: 'family' | 'home_help' | 'ambulance' | 'neighbour';
+  tierLabel: string;
+  name: string;
+  relationship: string;
+  phone: string;
+  etaEstimateMinutes?: number;
+  available24x7: boolean;
+  quickDialEnabled: boolean;
+}
+
 export interface ProjectConfig {
   projectName: string;
   category: string;

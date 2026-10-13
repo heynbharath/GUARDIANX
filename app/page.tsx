@@ -7,6 +7,7 @@ import { FeatureExplorer } from "@/components/sections/FeatureExplorer";
 import { ArchitectureSection } from "@/components/sections/ArchitectureSection";
 import { SafetyPrivacySection } from "@/components/sections/SafetyPrivacySection";
 import { CompetitorLandscapeSection } from "@/components/sections/CompetitorLandscapeSection";
+import { WhyBuySection } from "@/components/sections/WhyBuySection";
 import { ProjectSection } from "@/components/sections/ProjectSection";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
@@ -18,6 +19,7 @@ export default function Home() {
       <ConceptSection />
       <HowItWorksSection />
       <SafetyDashboard />
+      <WhyBuySection />
       <FeatureExplorer />
       <ArchitectureSection />
       <SafetyPrivacySection />
