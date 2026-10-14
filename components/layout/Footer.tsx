@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Shield, ExternalLink, Github } from "lucide-react";
+import { Shield } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { PROJECT_CONFIG } from "@/lib/project-config";
 
@@ -22,18 +22,7 @@ export function Footer() {
             <p className="text-gx-mineral max-w-sm leading-relaxed">
               Detect a potential safety signal. Interpret context with care. Coordinate family check-ins. Keep human relationships centered. Independent-living safety intelligence.
             </p>
-            <div className="flex items-center gap-4 pt-1">
-              <a
-                href={PROJECT_CONFIG.githubRepoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-gx-chalk hover:text-gx-citron font-mono text-[11px] transition-colors"
-              >
-                <Github className="w-3.5 h-3.5" />
-                <span>GitHub Repository</span>
-                <ExternalLink className="w-3 h-3" />
-              </a>
-            </div>
+
           </div>
 
           {/* Quick Links */}
